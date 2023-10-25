@@ -1,1 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
+@import url(./assets/css/reset.css);
+@import url(./assets/css/fonts.css);
+
+body {
+  width: 100vw;
+  height: 100vh;
+  font-family: "Lato", sans-serif;
+  font-size: var(--font-size-text-normal);
+  color: var(--color-dark);
+  background-color: var(--color-light);
+  overflow: hidden;
+}
+
+:root {
+  --color-primary: #056eba;
+  --color-secondary: #6a279f;
+  --color-tertiary: #80ab92;
+  --color-light: #ffffff;
+  --color-dark: #291720;
+  --color-gray: #7a7d7d;
+  --color-light-gray: #d0cfcf;
+  --color-success: #1e8449;
+  --color-warning: #f39c12;
+  --color-danger: #b03a2e;
+
+  --font-size-title-1: 48px;
+  --font-size-title-2: 40px;
+  --font-size-title-3: 36px;
+  --font-size-title-4: 32px;
+  --font-size-title-5: 24px;
+  --font-size-title-6: 20px;
+  --font-size-text-big: 16px;
+  --font-size-text-normal: 14px;
+  --font-size-text-small: 12px;
+
+  --color-shadow: rgba(0, 0, 0, 0.2);
+  --color-primary-hover: #088ae7;
+}
+
+.layout {
+  width: 100vw;
+  height: 100vh;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--color-light);
+  box-shadow: 0 5px 10px var(--color-shadow);
+  overflow: hidden;
+}
