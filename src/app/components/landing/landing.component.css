@@ -75,10 +75,6 @@
   flex-direction: row;
   gap: 50px;
   padding: 60px 120px;
-  background-image: url(../../../assets/img/background1.png);
-  background-repeat: no-repeat;
-  background-position: bottom;
-  background-size: cover;
   box-sizing: border-box;
 }
 
