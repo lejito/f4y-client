@@ -24,7 +24,9 @@
   --font-size-text-small: 12px;
 
   --color-shadow: rgba(0, 0, 0, 0.2);
+  --color-hover: rgba(0, 0, 0, 0.1);
   --color-primary-hover: #088ae7;
+  --color-tertiary-opaque: rgba(128, 171, 146, 0.3);
 }
 
 body {
@@ -83,17 +85,6 @@ span {
   overflow: hidden;
 }
 
-.content {
-  overflow: auto;
-}
-
-.bg-landing {
-  background-image: url(../img/background1.png);
-  background-repeat: no-repeat;
-  background-position: bottom;
-  background-size: cover;
-}
-
 .navbar {
   display: flex;
   flex-direction: row;
@@ -101,6 +92,32 @@ span {
   background-color: var(--color-light);
   box-shadow: 0 5px 10px var(--color-shadow);
   overflow: hidden;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.page {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.bg-landing {
+  background-image: url(../img/background1.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
+}
+
+.bg-home {
+  background-image: url(../img/background2.png), url(../img/background3.png);
+  background-repeat: no-repeat, no-repeat;
+  background-position: -10% 0, 100% 100%;
+  background-size: 40%, 50%;
 }
 
 .card {

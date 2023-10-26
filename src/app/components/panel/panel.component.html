@@ -1,0 +1,37 @@
+<div class="layout">
+  <nav class="navbar">
+    <div class="navbar__left">
+      <h5 class="navbar__title">Hola de nuevo, Andrés</h5>
+
+      <div class="navbar__date">
+        <span> Miércoles, 18 de octubre de 2023 </span>
+        <span> 10:00:00 </span>
+      </div>
+    </div>
+
+    <div class="v-line"></div>
+
+    <div class="navbar__right">
+      <div class="navbar__settings">
+        <a class="navbar__settings__link" routerLink="settings">
+          <mat-icon
+            fontIcon="settings"
+            class="navbar__settings__icon"
+          ></mat-icon>
+          <span class="navbar__settings__text">Ajustes</span>
+        </a>
+      </div>
+
+      <div class="logo__container">
+        <div class="bg-logo__corner"></div>
+        <div class="bg-logo">
+          <div class="logo"></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
