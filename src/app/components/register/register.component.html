@@ -1,1 +1,177 @@
-<p>register works!</p>
+<div class="layout bg-landing">
+  <div class="content">
+    <div class="content__left">
+      <div class="card">
+        <a class="back-button" routerLink="">
+          <mat-icon fontIcon="arrow_back" class="back-button__icon"></mat-icon>
+        </a>
+
+        <h4 class="form__title">Formulario de registro</h4>
+
+        <form action="javascript:void(0);" class="form">
+          <div class="form__row">
+            <div class="form__group">
+              <label class="form__label" for="tipoIdentificacion"
+                >Tipo de identificación</label
+              >
+              <select
+                name="tipoIdentificacion"
+                id="tipoIdentificacion"
+                class="form__select"
+              >
+                <option value="CC" class="form-option">
+                  Cédula de ciudadanía
+                </option>
+                <option value="TI" class="form-option">
+                  Tarjeta de identidad
+                </option>
+                <option value="CE" class="form-option">
+                  Cédula de extranjería
+                </option>
+                <option value="PP" class="form-option">Pasaporte</option>
+              </select>
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="numeroIdentificacion"
+                >Número de identificación</label
+              >
+              <input
+                type="text"
+                name="numeroIdentificacion"
+                id="numeroIdentificacion"
+                class="form__input"
+                placeholder="Ingresa tu número de identificación"
+              />
+            </div>
+          </div>
+
+          <div class="form__row">
+            <div class="form__group">
+              <label class="form__label" for="primerNombre"
+                >Primer nombre</label
+              >
+              <input
+                type="text"
+                name="primerNombre"
+                id="primerNombre"
+                class="form__input"
+                placeholder="Ingresa tu primer nombre"
+              />
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="segundoNombre"
+                >Segundo nombre</label
+              >
+              <input
+                type="text"
+                name="segundoNombre"
+                id="segundoNombre"
+                class="form__input"
+                placeholder="Ingresa tu segundo nombre"
+              />
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="primerApellido"
+                >Primer apellido</label
+              >
+              <input
+                type="text"
+                name="primerApellido"
+                id="primerApellido"
+                class="form__input"
+                placeholder="Ingresa tu primer apellido"
+              />
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="segundoApellido"
+                >Segundo apellido</label
+              >
+              <input
+                type="text"
+                name="segundoApellido"
+                id="segundoApellido"
+                class="form__input"
+                placeholder="Ingresa tu segundo apellido"
+              />
+            </div>
+          </div>
+
+          <div class="form__row">
+            <div class="form__group">
+              <label class="form__label" for="fechaNacimiento"
+                >Fecha de nacimiento</label
+              >
+              <input
+                type="date"
+                name="fechaNacimiento"
+                id="fechaNacimiento"
+                class="form__input"
+                placeholder="Ingresa tu fecha de nacimiento"
+              />
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="correo">Correo electrónico</label>
+              <input
+                type="email"
+                name="correo"
+                id="correo"
+                class="form__input"
+                placeholder="Ingresa un correo electrónico"
+              />
+            </div>
+          </div>
+
+          <div class="form__row">
+            <div class="form__group">
+              <label class="form__label" for="clave">Contraseña</label>
+              <input
+                type="password"
+                name="clave"
+                id="clave"
+                class="form__input"
+                placeholder="Ingresa una contraseña"
+              />
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="clave">Repetir contraseña</label>
+              <input
+                type="password"
+                name="repetirClave"
+                id="repetirClave"
+                class="form__input"
+                placeholder="Repite la contraseña"
+              />
+            </div>
+          </div>
+
+          <label for="tratamientoDatos" class="form__check"
+            ><input
+              type="checkbox"
+              name="tratamientoDatos"
+              id="tratamientoDatos"
+            />
+            Autorizo el Tratamiento de Datos Personales.</label
+          >
+
+          <label for="tyc" class="form__check"
+            ><input type="checkbox" name="tyc" id="tyc" /> Acepto los
+            <a routerLink="" class="link">Términos y Condiciones</a> de servicio
+            de Fin4Youth.</label
+          >
+
+          <button class="form__button">Crear cuenta</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="content__right">
+      <div class="register-img"></div>
+    </div>
+  </div>
+</div>

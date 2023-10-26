@@ -1,1 +1,60 @@
-<p>login works!</p>
+<div class="layout bg-landing">
+  <div class="content">
+    <div class="login-card">
+      <a class="back-button" routerLink="">
+        <mat-icon fontIcon="arrow_back" class="back-button__icon"></mat-icon>
+      </a>
+      <div class="login-logo"></div>
+      <div class="login-line"></div>
+      <h4 class="form__title">Iniciar sesión</h4>
+
+      <form action="javascript:void(0);" class="form">
+        <div class="form__group">
+          <label class="form__label" for="tipoIdentificacion"
+            >Tipo de identificación</label
+          >
+          <select
+            name="tipoIdentificacion"
+            id="tipoIdentificacion"
+            class="form__select"
+          >
+            <option value="CC" class="form-option">Cédula de ciudadanía</option>
+            <option value="TI" class="form-option">Tarjeta de identidad</option>
+            <option value="CE" class="form-option">
+              Cédula de extranjería
+            </option>
+            <option value="PP" class="form-option">Pasaporte</option>
+          </select>
+        </div>
+
+        <div class="form__group">
+          <label class="form__label" for="numeroIdentificacion"
+            >Número de identificación</label
+          >
+          <input
+            type="text"
+            name="numeroIdentificacion"
+            id="numeroIdentificacion"
+            class="form__input"
+            placeholder="Ingresa tu número de identificación"
+          />
+        </div>
+
+        <div class="form__group">
+          <label class="form__label" for="clave">Contraseña</label>
+          <input
+            type="password"
+            name="clave"
+            id="clave"
+            class="form__input"
+            placeholder="Ingresa tu contraseña"
+          />
+        </div>
+
+        <button class="form__button">Ingresar</button>
+
+        <a routerLink="" class="form__missing-password">¿Olvidaste tu contraseña?</a>
+      </form>
+    </div>
+  </div>
+</div>

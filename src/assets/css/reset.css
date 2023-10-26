@@ -80,16 +80,21 @@ time,
 mark,
 audio,
 video,
-a {
+a,
+input,
+select,
+option {
   margin: 0;
   padding: 0;
   border: 0;
   font-size: 100%;
   font: inherit;
+  font-family: inherit;
   vertical-align: baseline;
   text-decoration: inherit;
   text-transform: inherit;
   color: inherit;
+  outline: none;
 }
 /* HTML5 display-role reset for older browsers */
 article,
