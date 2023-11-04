@@ -26,7 +26,9 @@
   --color-shadow: rgba(0, 0, 0, 0.2);
   --color-hover: rgba(0, 0, 0, 0.1);
   --color-primary-hover: #088ae7;
-  --color-tertiary-opaque: rgba(128, 171, 146, 0.3);
+  --color-gray-hover: #535555;
+  --color-primary-opaque: rgba(5, 109, 184, 0.5);
+  --color-tertiary-opaque: rgba(128, 171, 146, 0.5);
 }
 
 body {
@@ -73,8 +75,7 @@ h6 {
   font-size: var(--font-size-title-6);
 }
 
-p,
-span {
+p {
   font-size: var(--font-size-text-normal);
   color: var(--color-dark);
 }
@@ -98,6 +99,66 @@ span {
   width: 100%;
   height: 100%;
   overflow: auto;
+}
+
+.loading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.75);
+  transition: all 300ms ease-in-out;
+  z-index: 999;
+}
+
+.loading__loader {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+
+.loading__loader::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-light-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-hover);
 }
 
 .page {
@@ -188,22 +249,29 @@ span {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
 .form__label {
   font-size: var(--font-size-text-big);
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .form__input,
 .form__select {
   font-size: var(--font-size-text-normal);
+  margin-bottom: 4px;
   padding: 12px;
   background-color: var(--color-light-gray);
   border-radius: 4px;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.form__invalid-text {
+  font-size: var(--font-size-text-small);
+  font-weight: bold;
+  color: var(--color-danger);
 }
 
 .form__check {
@@ -227,6 +295,11 @@ span {
 
 .form__button:hover {
   background-color: var(--color-primary-hover);
+}
+
+.form__button:disabled {
+  background-color: var(--color-primary-opaque);
+  cursor: not-allowed;
 }
 
 .form__missing-password {

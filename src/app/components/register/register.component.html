@@ -1,4 +1,5 @@
 <div class="layout bg-landing">
+  <app-loading *ngIf="isLoading"></app-loading>
   <div class="content">
     <div class="content__left">
       <div class="card">
@@ -8,28 +9,38 @@
 
         <h4 class="form__title">Formulario de registro</h4>
 
-        <form action="javascript:void(0);" class="form">
+        <form class="form" (ngSubmit)="registrar()">
           <div class="form__row">
             <div class="form__group">
               <label class="form__label" for="tipoIdentificacion"
                 >Tipo de identificación</label
               >
               <select
-                name="tipoIdentificacion"
                 id="tipoIdentificacion"
+                name="tipoIdentificacion"
                 class="form__select"
+                [(ngModel)]="formulario.tipoIdentificacion"
               >
-                <option value="CC" class="form-option">
+                <option value="" class="form__option">
+                  Seleccionar tipo de identificación
+                </option>
+                <option value="CC" class="form__option">
                   Cédula de ciudadanía
                 </option>
-                <option value="TI" class="form-option">
+                <option value="TI" class="form__option">
                   Tarjeta de identidad
                 </option>
-                <option value="CE" class="form-option">
+                <option value="CE" class="form__option">
                   Cédula de extranjería
                 </option>
-                <option value="PP" class="form-option">Pasaporte</option>
+                <option value="PP" class="form__option">Pasaporte</option>
               </select>
+              <span
+                class="form__invalid-text"
+                *ngIf="formularioEnviado && !formulario.tipoIdentificacion"
+              >
+                El tipo de identificación es requerido.
+              </span>
             </div>
 
             <div class="form__group">
@@ -38,11 +49,27 @@
               >
               <input
                 type="text"
-                name="numeroIdentificacion"
                 id="numeroIdentificacion"
+                name="numeroIdentificacion"
                 class="form__input"
                 placeholder="Ingresa tu número de identificación"
+                [(ngModel)]="formulario.numeroIdentificacion"
               />
+              <span
+                class="form__invalid-text"
+                *ngIf="formularioEnviado && !formulario.numeroIdentificacion"
+              >
+                El número de identificación es requerido.
+              </span>
+              <span
+                class="form__invalid-text"
+                *ngIf="
+                  formularioEnviado &&
+                  formulario.numeroIdentificacion.length > 10
+                "
+              >
+                El número de identificación debe ser menor a 10 caracteres.
+              </span>
             </div>
           </div>
 
@@ -53,11 +80,24 @@
               >
               <input
                 type="text"
-                name="primerNombre"
                 id="primerNombre"
+                name="primerNombre"
                 class="form__input"
                 placeholder="Ingresa tu primer nombre"
+                [(ngModel)]="formulario.primerNombre"
               />
+              <span
+                class="form__invalid-text"
+                *ngIf="formularioEnviado && !formulario.primerNombre"
+              >
+                El primer nombre es requerido.
+              </span>
+              <span
+                class="form__invalid-text"
+                *ngIf="formularioEnviado && formulario.primerNombre.length > 20"
+              >
+                El primer nombre debe ser menor a 20 caracteres.
+              </span>
             </div>
 
             <div class="form__group">
@@ -66,11 +106,20 @@
               >
               <input
                 type="text"
-                name="segundoNombre"
                 id="segundoNombre"
+                name="segundoNombre"
                 class="form__input"
                 placeholder="Ingresa tu segundo nombre"
+                [(ngModel)]="formulario.segundoNombre"
               />
+              <span
+                class="form__invalid-text"
+                *ngIf="
+                  formularioEnviado && formulario.segundoNombre.length > 20
+                "
+              >
+                El segundo nombre debe ser menor a 20 caracteres.
+              </span>
             </div>
 
             <div class="form__group">
@@ -79,11 +128,26 @@
               >
               <input
                 type="text"
-                name="primerApellido"
                 id="primerApellido"
+                name="primerApellido"
                 class="form__input"
                 placeholder="Ingresa tu primer apellido"
+                [(ngModel)]="formulario.primerApellido"
               />
+              <span
+                class="form__invalid-text"
+                *ngIf="formularioEnviado && !formulario.primerApellido"
+              >
+                El primer apellido es requerido.
+              </span>
+              <span
+                class="form__invalid-text"
+                *ngIf="
+                  formularioEnviado && formulario.primerApellido.length > 20
+                "
+              >
+                El primer apellido debe ser menor a 20 caracteres.
+              </span>
             </div>
 
             <div class="form__group">
@@ -92,11 +156,20 @@
               >
               <input
                 type="text"
-                name="segundoApellido"
                 id="segundoApellido"
+                name="segundoApellido"
                 class="form__input"
                 placeholder="Ingresa tu segundo apellido"
+                [(ngModel)]="formulario.segundoApellido"
               />
+              <span
+                class="form__invalid-text"
+                *ngIf="
+                  formularioEnviado && formulario.segundoApellido.length > 20
+                "
+              >
+                El segundo apellido debe ser menor a 20 caracteres.
+              </span>
             </div>
           </div>
 
@@ -107,22 +180,52 @@
               >
               <input
                 type="date"
-                name="fechaNacimiento"
                 id="fechaNacimiento"
+                name="fechaNacimiento"
                 class="form__input"
                 placeholder="Ingresa tu fecha de nacimiento"
               />
+              <span
+                class="form__invalid-text"
+                *ngIf="formularioEnviado && !formulario.fechaNacimiento"
+              >
+                La fecha de nacimiento es requerida.
+              </span>
             </div>
 
             <div class="form__group">
               <label class="form__label" for="correo">Correo electrónico</label>
               <input
                 type="email"
-                name="correo"
                 id="correo"
+                name="correo"
                 class="form__input"
                 placeholder="Ingresa un correo electrónico"
+                [(ngModel)]="formulario.correo"
               />
+              <span
+                class="form__invalid-text"
+                *ngIf="formularioEnviado && !formulario.correo"
+              >
+                El correo electrónico es requerido.
+              </span>
+              <span
+                class="form__invalid-text"
+                *ngIf="formularioEnviado && formulario.correo.length > 120"
+              >
+                El correo electrónico debe ser menor a 120 caracteres.
+              </span>
+              <span
+                class="form__invalid-text"
+                *ngIf="
+                  formularioEnviado &&
+                  formulario.correo &&
+                  !patronCorreo.test(formulario.correo)
+                "
+              >
+                El correo electrónico debe tener un formato válido
+                (someone@example.com).
+              </span>
             </div>
           </div>
 
@@ -131,41 +234,104 @@
               <label class="form__label" for="clave">Contraseña</label>
               <input
                 type="password"
-                name="clave"
                 id="clave"
+                name="clave"
                 class="form__input"
                 placeholder="Ingresa una contraseña"
+                [(ngModel)]="formulario.clave"
               />
+              <span
+                class="form__invalid-text"
+                *ngIf="formularioEnviado && !formulario.clave"
+              >
+                La contraseña es requerida.
+              </span>
+              <span
+                class="form__invalid-text"
+                *ngIf="
+                  formularioEnviado &&
+                  formulario.clave.length < 8 &&
+                  formulario.clave.length > 20
+                "
+              >
+                La contraseña debe tener entre 8 y 20 caracteres.
+              </span>
+              <span
+                class="form__invalid-text"
+                *ngIf="
+                  formularioEnviado &&
+                  formulario.clave &&
+                  !patronClave.test(formulario.clave)
+                "
+              >
+                La contraseña debe tener mínimo 1 letra minúscula, 1 letra
+                mayúscula, 1 número y 1 caracter especial.
+              </span>
             </div>
 
             <div class="form__group">
               <label class="form__label" for="clave">Repetir contraseña</label>
               <input
                 type="password"
-                name="repetirClave"
                 id="repetirClave"
+                name="repetirClave"
                 class="form__input"
                 placeholder="Repite la contraseña"
+                [(ngModel)]="formulario.repetirClave"
               />
+              <span
+                class="form__invalid-text"
+                *ngIf="formularioEnviado && !formulario.clave"
+              >
+                La contraseña es requerida.
+              </span>
+              <span
+                class="form__invalid-text"
+                *ngIf="
+                  formularioEnviado &&
+                  formulario.clave != formulario.repetirClave
+                "
+              >
+                Las contraseñas deben ser iguales.
+              </span>
             </div>
           </div>
 
           <label for="tratamientoDatos" class="form__check"
             ><input
               type="checkbox"
-              name="tratamientoDatos"
               id="tratamientoDatos"
+              name="tratamientoDatos"
+              [(ngModel)]="formulario.tratamientoDatos"
             />
             Autorizo el Tratamiento de Datos Personales.</label
           >
+          <span
+            class="form__invalid-text"
+            *ngIf="formularioEnviado && !formulario.tratamientoDatos"
+          >
+            Se debe autorizar la Política de Tratamiento de Datos Personales.
+          </span>
 
           <label for="tyc" class="form__check"
-            ><input type="checkbox" name="tyc" id="tyc" /> Acepto los
-            <a routerLink="" class="link">Términos y Condiciones</a> de servicio
+            ><input
+              type="checkbox"
+              id="tyc"
+              name="tyc"
+              [(ngModel)]="formulario.terminosYCondiciones"
+            />
+            Acepto los
+            <a routerLink="" class="link">Términos y Condiciones de Servicio</a>
             de Fin4Youth.</label
           >
+          <span
+            class="form__invalid-text"
+            *ngIf="formularioEnviado && !formulario.terminosYCondiciones"
+          >
+            Se deben aceptar los Términos y Condiciones de Servicio.
+          </span>
 
-          <button class="form__button">Crear cuenta</button>
+          <button class="form__button" type="submit" [disabled]="formularioEnviado && !verificarCampos()">Crear cuenta</button>
         </form>
       </div>
     </div>
