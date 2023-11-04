@@ -184,7 +184,10 @@
                 name="fechaNacimiento"
                 class="form__input"
                 placeholder="Ingresa tu fecha de nacimiento"
+                [min]=""
+                [(ngModel)]="formulario.fechaNacimiento"
               />
+
               <span
                 class="form__invalid-text"
                 *ngIf="formularioEnviado && !formulario.fechaNacimiento"
@@ -219,7 +222,7 @@
                 class="form__invalid-text"
                 *ngIf="
                   formularioEnviado &&
-                  formulario.correo &&
+                  !!formulario.correo &&
                   !patronCorreo.test(formulario.correo)
                 "
               >
@@ -260,7 +263,7 @@
                 class="form__invalid-text"
                 *ngIf="
                   formularioEnviado &&
-                  formulario.clave &&
+                  !!formulario.clave &&
                   !patronClave.test(formulario.clave)
                 "
               >
