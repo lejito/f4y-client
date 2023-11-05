@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AlertService } from 'src/app/services/alerts.service';
 import { CuentasService } from 'src/app/services/cuentas.service';
 
 @Component({
@@ -8,12 +7,7 @@ import { CuentasService } from 'src/app/services/cuentas.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  constructor(
-    private alertService: AlertService,
-    private cuentasService: CuentasService
-  ) {}
-
-  ngOnInit(): void {}
+  constructor(private cuentasService: CuentasService) {}
 
   public isLoading = false;
 
@@ -40,6 +34,7 @@ export class RegisterComponent {
   };
 
   public verificarCampos(): boolean {
+    const edad = this.calcularEdad();
     return (
       !!this.formulario.tipoIdentificacion &&
       !!this.formulario.numeroIdentificacion &&
@@ -51,6 +46,7 @@ export class RegisterComponent {
       this.formulario.primerApellido.length <= 20 &&
       this.formulario.segundoApellido.length <= 20 &&
       !!this.formulario.fechaNacimiento &&
+      edad >= 18 &&
       !!this.formulario.correo &&
       this.formulario.correo.length <= 120 &&
       this.patronCorreo.test(this.formulario.correo) &&
@@ -65,9 +61,9 @@ export class RegisterComponent {
     );
   }
 
-  public calcularEdad(fechaNacimientoString: string) {
+  public calcularEdad() {
     const fechaActual = new Date();
-    const fechaNacimiento = new Date(fechaNacimientoString);
+    const fechaNacimiento = new Date(this.formulario.fechaNacimiento);
     let edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
     const diferenciaMeses = fechaActual.getMonth() - fechaNacimiento.getMonth();
     const diferenciaDias = fechaActual.getDate() - fechaNacimiento.getDate();
@@ -80,31 +76,22 @@ export class RegisterComponent {
   public async registrar() {
     this.formularioEnviado = true;
     if (this.verificarCampos()) {
-      const edad = this.calcularEdad(this.formulario.fechaNacimiento);
-
-      if (edad >= 18 && edad <= 28) {
-        this.isLoading = true;
-        await this.cuentasService
-          .crear(
-            this.formulario.tipoIdentificacion,
-            this.formulario.numeroIdentificacion,
-            this.formulario.primerNombre,
-            this.formulario.segundoNombre,
-            this.formulario.primerApellido,
-            this.formulario.segundoApellido,
-            this.formulario.fechaNacimiento,
-            this.formulario.correo,
-            this.formulario.clave
-          )
-          .finally(() => {
-            this.isLoading = false;
-          });
-      } else {
-        this.alertService.message(
-          'warning',
-          'Para registrar una cuenta en Fin4Youth, debes tener entre 18 y 28 años de edad.'
-        );
-      }
+      this.isLoading = true;
+      await this.cuentasService
+        .crear(
+          this.formulario.tipoIdentificacion,
+          this.formulario.numeroIdentificacion,
+          this.formulario.primerNombre,
+          this.formulario.segundoNombre,
+          this.formulario.primerApellido,
+          this.formulario.segundoApellido,
+          this.formulario.fechaNacimiento,
+          this.formulario.correo,
+          this.formulario.clave
+        )
+        .finally(() => {
+          this.isLoading = false;
+        });
     }
   }
 }

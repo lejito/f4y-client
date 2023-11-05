@@ -17,6 +17,6 @@ Adicionalmente, también se define una función que sirve para verificar si los 
 export type Response = {
   type: 'success' | 'warning' | 'error';
   message: string;
-  body: object | object[];
+  body: any;
   error: boolean;
 }

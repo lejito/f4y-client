@@ -187,12 +187,21 @@
                 [min]=""
                 [(ngModel)]="formulario.fechaNacimiento"
               />
-
               <span
                 class="form__invalid-text"
                 *ngIf="formularioEnviado && !formulario.fechaNacimiento"
               >
                 La fecha de nacimiento es requerida.
+              </span>
+              <span
+                class="form__invalid-text"
+                *ngIf="
+                  formularioEnviado &&
+                  !!formulario.fechaNacimiento &&
+                  calcularEdad() < 18
+                "
+              >
+                Para usar Fin4Youth, debes ser mayor de 18 años.
               </span>
             </div>
 
@@ -334,7 +343,13 @@
             Se deben aceptar los Términos y Condiciones de Servicio.
           </span>
 
-          <button class="form__button" type="submit" [disabled]="formularioEnviado && !verificarCampos()">Crear cuenta</button>
+          <button
+            class="form__button"
+            type="submit"
+            [disabled]="formularioEnviado && !verificarCampos()"
+          >
+            Crear cuenta
+          </button>
         </form>
       </div>
     </div>
