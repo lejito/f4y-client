@@ -9,16 +9,20 @@
       <div class="login-line"></div>
       <h4 class="form__title">Iniciar sesión</h4>
 
-      <form action="javascript:void(0);" class="form">
+      <form class="form" (ngSubmit)="ingresar()">
         <div class="form__group">
           <label class="form__label" for="tipoIdentificacion"
             >Tipo de identificación</label
           >
           <select
-            name="tipoIdentificacion"
             id="tipoIdentificacion"
+            name="tipoIdentificacion"
             class="form__select"
+            [(ngModel)]="formulario.tipoIdentificacion"
           >
+            <option value="" class="form__option">
+              Seleccionar tipo de identificación
+            </option>
             <option value="CC" class="form-option">Cédula de ciudadanía</option>
             <option value="TI" class="form-option">Tarjeta de identidad</option>
             <option value="CE" class="form-option">
@@ -26,6 +30,12 @@
             </option>
             <option value="PP" class="form-option">Pasaporte</option>
           </select>
+          <span
+            class="form__invalid-text"
+            *ngIf="formularioEnviado && !formulario.tipoIdentificacion"
+          >
+            El tipo de identificación es requerido.
+          </span>
         </div>
 
         <div class="form__group">
@@ -34,27 +44,49 @@
           >
           <input
             type="text"
-            name="numeroIdentificacion"
             id="numeroIdentificacion"
+            name="numeroIdentificacion"
             class="form__input"
             placeholder="Ingresa tu número de identificación"
+            [(ngModel)]="formulario.numeroIdentificacion"
           />
+          <span
+            class="form__invalid-text"
+            *ngIf="formularioEnviado && !formulario.numeroIdentificacion"
+          >
+            El número de identificación es requerido.
+          </span>
         </div>
 
         <div class="form__group">
           <label class="form__label" for="clave">Contraseña</label>
           <input
             type="password"
-            name="clave"
             id="clave"
+            name="clave"
             class="form__input"
             placeholder="Ingresa tu contraseña"
+            [(ngModel)]="formulario.clave"
           />
+          <span
+            class="form__invalid-text"
+            *ngIf="formularioEnviado && !formulario.clave"
+          >
+            La contraseña es requerida.
+          </span>
         </div>
 
-        <button class="form__button" routerLink="/panel">Ingresar</button>
+        <button
+          class="form__button"
+          type="submit"
+          [disabled]="formularioEnviado && !verificarCampos()"
+        >
+          Ingresar
+        </button>
 
-        <a routerLink="" class="form__missing-password">¿Olvidaste tu contraseña?</a>
+        <a routerLink="" class="form__missing-password">
+          ¿Olvidaste tu contraseña?
+        </a>
       </form>
     </div>
   </div>

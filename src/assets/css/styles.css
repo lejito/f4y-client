@@ -26,6 +26,7 @@
   --color-shadow: rgba(0, 0, 0, 0.2);
   --color-hover: rgba(0, 0, 0, 0.1);
   --color-primary-hover: #088ae7;
+  --color-secondary-hover: #9034d5;
   --color-gray-hover: #535555;
   --color-primary-opaque: rgba(5, 109, 184, 0.5);
   --color-tertiary-opaque: rgba(128, 171, 146, 0.5);

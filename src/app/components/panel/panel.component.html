@@ -1,11 +1,20 @@
 <div class="layout">
   <nav class="navbar">
     <div class="navbar__left">
-      <h5 class="navbar__title">Hola de nuevo, Andrés</h5>
+      <h5 class="navbar__title" *ngIf="rutaActual == ''; else anyRute">
+        ¡Hola de nuevo{{ nombre ? ", " + nombre.primerNombre + "!" : "!" }}
+        {{ rutaActual }}
+      </h5>
+      <ng-template #anyRute>
+        <button class="back__button" routerLink="/panel">
+          <mat-icon fontIcon="arrow_back" class="back-button__icon"></mat-icon>
+          <span>Volver a Inicio</span>
+        </button>
+      </ng-template>
 
       <div class="navbar__date">
-        <span> Miércoles, 18 de octubre de 2023 </span>
-        <span> 10:00:00 </span>
+        <span>{{ fechaTexto }}</span>
+        <span>{{ horaTexto }}</span>
       </div>
     </div>
 

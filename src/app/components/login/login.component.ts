@@ -12,4 +12,34 @@ export class LoginComponent {
   public isLoading = false;
 
   public formularioEnviado = false;
+
+  public formulario = {
+    tipoIdentificacion: '',
+    numeroIdentificacion: '',
+    clave: '',
+  };
+
+  public verificarCampos() {
+    return (
+      !!this.formulario.tipoIdentificacion &&
+      !!this.formulario.numeroIdentificacion &&
+      !!this.formulario.clave
+    );
+  }
+
+  public async ingresar() {
+    this.formularioEnviado = true;
+    if (this.verificarCampos()) {
+      this.isLoading = true;
+      await this.cuentasService
+        .iniciarSesion(
+          this.formulario.tipoIdentificacion,
+          this.formulario.numeroIdentificacion,
+          this.formulario.clave
+        )
+        .finally(() => {
+          this.isLoading = false;
+        });
+    }
+  }
 }

@@ -1,8 +1,10 @@
 <div class="page bg-home">
+  <app-loading *ngIf="isLoading"></app-loading>
+
   <h3>¿Qué quieres hacer hoy?</h3>
 
   <div class="menu">
-    <a class="menu__option">
+    <a class="menu__option" routerLink="savings">
       <div class="menu__option__bg">
         <img src="../../../assets/img/icon-bank.png" class="menu__option__img" />
       </div>
@@ -51,7 +53,7 @@
       <h6>Soporte técnico</h6>
     </a>
 
-    <a class="menu__option">
+    <a class="menu__option" (click)="cerrarSesion()">
       <div class="menu__option__bg">
         <img src="../../../assets/img/icon-shutdown.png" class="menu__option__img" />
       </div>

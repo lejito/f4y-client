@@ -13,6 +13,8 @@ import { Error404Component } from './components/error404/error404.component';
 import { PanelComponent } from './components/panel/panel.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { SavingsComponent } from './components/savings/savings.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     PanelComponent,
     HomeComponent,
     LoadingComponent,
+    SettingsComponent,
+    SavingsComponent,
   ],
   imports: [
     BrowserModule,

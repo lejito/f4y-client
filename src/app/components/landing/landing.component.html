@@ -29,7 +29,7 @@
       </li>
     </ul>
 
-    <div class="navbar__options">
+    <div class="navbar__options" *ngIf="!sesionAbierta; else accountOption">
       <a class="navbar__options__button" routerLink="/login">
         Iniciar sesión
       </a>
@@ -39,6 +39,14 @@
         >Regístrate</a
       >
     </div>
+    <ng-template #accountOption>
+      <div style="padding: 6px 10px;">
+        <a class="navbar__options__button" routerLink="/panel">
+          <mat-icon fontIcon="person" class="panel-button__icon"></mat-icon>
+          <span>Ir al Panel</span>
+        </a>
+      </div>
+    </ng-template>
   </nav>
 
   <main class="content">
@@ -52,7 +60,17 @@
         responsable, de cero a experto.
       </p>
       <p class="landing-text">¿Qué estás esperando?</p>
-      <a class="landing-button" routerLink="/register">¡Regístrate!</a>
+      <a
+        class="landing-button"
+        routerLink="/register"
+        *ngIf="!sesionAbierta; else panelButton"
+        >¡Regístrate!</a
+      >
+      <ng-template #panelButton
+        ><a class="landing-button" routerLink="/panel"
+          >Ir al Panel</a
+        ></ng-template
+      >
     </div>
   </main>
 </div>

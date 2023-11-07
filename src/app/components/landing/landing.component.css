@@ -45,6 +45,10 @@
 }
 
 .navbar__options__button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
   color: var(--color-light);
   background-color: var(--color-primary);
   padding: 10px 16px;
@@ -123,4 +127,11 @@
 .landing-button:hover {
   background-color: var(--color-primary-hover);
   box-shadow: 0px 0px 2px 1px var(--color-primary);
+}
+
+.panel-button__icon {
+  width: auto;
+  height: auto;
+  font-size: 18px;
+  align-items: center;
 }

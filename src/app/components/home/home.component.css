@@ -1,9 +1,14 @@
+.content {
+  overflow: hidden;
+}
+
 .page {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 50px;
   padding: 50px;
+  overflow: auto;
 }
 
 .menu {
