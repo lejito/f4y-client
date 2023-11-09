@@ -1,3 +1,8 @@
 <div class="loading">
   <span class="loading__loader"></span>
+  <div class="loading__text-container">
+    <span class="loading__text" @fadeInOut *ngIf="showMessage">
+      {{ currentMessage }}
+    </span>
+  </div>
 </div>

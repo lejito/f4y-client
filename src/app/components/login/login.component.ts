@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoadingService } from 'src/app/services/loading.service';
 import { CuentasService } from 'src/app/services/cuentas.service';
 
 @Component({
@@ -7,9 +8,10 @@ import { CuentasService } from 'src/app/services/cuentas.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private cuentasService: CuentasService) {}
-
-  public isLoading = false;
+  constructor(
+    private loadingService: LoadingService,
+    private cuentasService: CuentasService
+  ) {}
 
   public formularioEnviado = false;
 
@@ -30,16 +32,13 @@ export class LoginComponent {
   public async ingresar() {
     this.formularioEnviado = true;
     if (this.verificarCampos()) {
-      this.isLoading = true;
-      await this.cuentasService
-        .iniciarSesion(
-          this.formulario.tipoIdentificacion,
-          this.formulario.numeroIdentificacion,
-          this.formulario.clave
-        )
-        .finally(() => {
-          this.isLoading = false;
-        });
+      this.loadingService.isLoading = true;
+      await this.cuentasService.iniciarSesion(
+        this.formulario.tipoIdentificacion,
+        this.formulario.numeroIdentificacion,
+        this.formulario.clave
+      );
+      this.loadingService.isLoading = false;
     }
   }
 }

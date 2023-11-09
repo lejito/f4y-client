@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoadingService } from 'src/app/services/loading.service';
 import { CuentasService } from 'src/app/services/cuentas.service';
 
 @Component({
@@ -7,9 +8,10 @@ import { CuentasService } from 'src/app/services/cuentas.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  constructor(private cuentasService: CuentasService) {}
-
-  public isLoading = false;
+  constructor(
+    private loadingService: LoadingService,
+    private cuentasService: CuentasService
+  ) {}
 
   public formularioEnviado = false;
 
@@ -76,26 +78,21 @@ export class RegisterComponent {
   public async registrar() {
     this.formularioEnviado = true;
     if (this.verificarCampos()) {
-      this.isLoading = true;
-      await this.cuentasService
-        .crear(
-          this.formulario.tipoIdentificacion,
-          this.formulario.numeroIdentificacion,
-          this.formulario.primerNombre,
-          !!this.formulario.segundoNombre
-            ? this.formulario.segundoNombre
-            : null,
-          this.formulario.primerApellido,
-          !!this.formulario.segundoApellido
-            ? this.formulario.segundoApellido
-            : null,
-          this.formulario.fechaNacimiento,
-          this.formulario.correo,
-          this.formulario.clave
-        )
-        .finally(() => {
-          this.isLoading = false;
-        });
+      this.loadingService.isLoading = true;
+      await this.cuentasService.crear(
+        this.formulario.tipoIdentificacion,
+        this.formulario.numeroIdentificacion,
+        this.formulario.primerNombre,
+        !!this.formulario.segundoNombre ? this.formulario.segundoNombre : null,
+        this.formulario.primerApellido,
+        !!this.formulario.segundoApellido
+          ? this.formulario.segundoApellido
+          : null,
+        this.formulario.fechaNacimiento,
+        this.formulario.correo,
+        this.formulario.clave
+      );
+      this.loadingService.isLoading = false;
     }
   }
 }

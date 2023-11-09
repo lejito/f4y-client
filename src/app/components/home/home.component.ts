@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoadingService } from 'src/app/services/loading.service';
 import { CuentasService } from 'src/app/services/cuentas.service';
 
 @Component({
@@ -7,15 +8,16 @@ import { CuentasService } from 'src/app/services/cuentas.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  constructor(private cuentasService: CuentasService) {}
+  constructor(
+    private loadingService: LoadingService,
+    private cuentasService: CuentasService
+  ) {}
 
-  public isLoading = false;
   public rutaActual: string = '';
 
   public async cerrarSesion(): Promise<void> {
-    this.isLoading = true;
-    await this.cuentasService.cerrarSesion().finally(() => {
-      this.isLoading = false;
-    });
+    this.loadingService.isLoading = true;
+    await this.cuentasService.cerrarSesion();
+    this.loadingService.isLoading = false;
   }
 }
