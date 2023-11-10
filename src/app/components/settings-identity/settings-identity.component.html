@@ -1,0 +1,65 @@
+<form class="form" (ngSubmit)="actualizar()">
+  <div class="form__column">
+    <div class="form__group">
+      <label class="form__label" for="tipoIdentificacion">
+        Tipo de identificación
+      </label>
+      <select
+        id="tipoIdentificacion"
+        name="tipoIdentificacion"
+        class="form__select"
+        [(ngModel)]="formulario.tipoIdentificacion"
+        [disabled]="!datosCargados"
+      >
+        <option value="" class="form__option">
+          Seleccionar tipo de identificación
+        </option>
+        <option value="CC" class="form__option">Cédula de ciudadanía</option>
+        <option value="TI" class="form__option">Tarjeta de identidad</option>
+        <option value="CE" class="form__option">Cédula de extranjería</option>
+        <option value="PP" class="form__option">Pasaporte</option>
+      </select>
+      <span
+        class="form__invalid-text"
+        *ngIf="formularioEnviado && !formulario.tipoIdentificacion"
+      >
+        El tipo de identificación es requerido.
+      </span>
+    </div>
+
+    <div class="form__group">
+      <label class="form__label" for="numeroIdentificacion"
+        >Número de identificación</label
+      >
+      <input
+        type="text"
+        id="numeroIdentificacion"
+        name="numeroIdentificacion"
+        class="form__input"
+        placeholder="Ingresa tu número de identificación"
+        [(ngModel)]="formulario.numeroIdentificacion"
+        [disabled]="!datosCargados"
+      />
+      <span
+        class="form__invalid-text"
+        *ngIf="formularioEnviado && !formulario.numeroIdentificacion"
+      >
+        El número de identificación es requerido.
+      </span>
+      <span
+        class="form__invalid-text"
+        *ngIf="formularioEnviado && formulario.numeroIdentificacion.length > 10"
+      >
+        El número de identificación debe ser menor a 10 caracteres.
+      </span>
+    </div>
+
+    <button
+      class="form__button"
+      type="submit"
+      [disabled]="(formularioEnviado && !verificarCampos()) || !datosCargados"
+    >
+      Actualizar datos
+    </button>
+  </div>
+</form>

@@ -10,15 +10,14 @@ import { CuentasService } from 'src/app/services/cuentas.service';
 export class RegisterComponent {
   constructor(
     private loadingService: LoadingService,
-    private cuentasService: CuentasService
+    public cuentasService: CuentasService
   ) {}
 
   public formularioEnviado = false;
 
-  public patronCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  public patronCorreo = this.cuentasService.patronCorreo;
 
-  public patronClave =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_.,:;!"#$%&/()=?¿¡{}[\]*+~\\|°<>])\S*$/;
+  public patronClave = this.cuentasService.patronClave;
 
   public formulario = {
     tipoIdentificacion: '',
@@ -36,7 +35,9 @@ export class RegisterComponent {
   };
 
   public verificarCampos() {
-    const edad = this.calcularEdad();
+    const edad = this.cuentasService.calcularEdad(
+      this.formulario.fechaNacimiento
+    );
     return (
       !!this.formulario.tipoIdentificacion &&
       !!this.formulario.numeroIdentificacion &&
@@ -61,18 +62,6 @@ export class RegisterComponent {
       this.formulario.tratamientoDatos &&
       this.formulario.terminosYCondiciones
     );
-  }
-
-  public calcularEdad() {
-    const fechaActual = new Date();
-    const fechaNacimiento = new Date(this.formulario.fechaNacimiento);
-    let edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
-    const diferenciaMeses = fechaActual.getMonth() - fechaNacimiento.getMonth();
-    const diferenciaDias = fechaActual.getDate() - fechaNacimiento.getDate();
-    if (diferenciaMeses < 0 || (diferenciaMeses == 0 && diferenciaDias <= 0)) {
-      edad--;
-    }
-    return edad;
   }
 
   public async registrar() {

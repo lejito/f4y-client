@@ -183,7 +183,6 @@
                 name="fechaNacimiento"
                 class="form__input"
                 placeholder="Ingresa tu fecha de nacimiento"
-                [min]=""
                 [(ngModel)]="formulario.fechaNacimiento"
               />
               <span
@@ -197,7 +196,7 @@
                 *ngIf="
                   formularioEnviado &&
                   !!formulario.fechaNacimiento &&
-                  calcularEdad() < 18
+                  cuentasService.calcularEdad(formulario.fechaNacimiento) < 18
                 "
               >
                 Para usar Fin4Youth, debes ser mayor de 18 años.
@@ -234,7 +233,8 @@
                   !patronCorreo.test(formulario.correo)
                 "
               >
-                El correo electrónico debe tener un formato válido (someone&#64;example.com).
+                El correo electrónico debe tener un formato válido
+                (someone&#64;example.com).
               </span>
             </div>
           </div>
@@ -280,7 +280,9 @@
             </div>
 
             <div class="form__group">
-              <label class="form__label" for="clave">Repetir contraseña</label>
+              <label class="form__label" for="claveClave"
+                >Repetir contraseña</label
+              >
               <input
                 type="password"
                 id="repetirClave"

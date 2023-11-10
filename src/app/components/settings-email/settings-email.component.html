@@ -1,0 +1,47 @@
+<form class="form" (ngSubmit)="actualizar()">
+  <div class="form__column">
+    <div class="form__group">
+      <label class="form__label" for="correo">Correo electrónico</label>
+      <input
+        type="email"
+        id="correo"
+        name="correo"
+        class="form__input"
+        placeholder="Ingresa un correo electrónico"
+        [(ngModel)]="formulario.correo"
+        [disabled]="!datosCargados"
+      />
+      <span
+        class="form__invalid-text"
+        *ngIf="formularioEnviado && !formulario.correo"
+      >
+        El correo electrónico es requerido.
+      </span>
+      <span
+        class="form__invalid-text"
+        *ngIf="formularioEnviado && formulario.correo.length > 120"
+      >
+        El correo electrónico debe ser menor a 120 caracteres.
+      </span>
+      <span
+        class="form__invalid-text"
+        *ngIf="
+          formularioEnviado &&
+          !!formulario.correo &&
+          !patronCorreo.test(formulario.correo)
+        "
+      >
+        El correo electrónico debe tener un formato válido
+        (someone&#64;example.com).
+      </span>
+    </div>
+
+    <button
+      class="form__button"
+      type="submit"
+      [disabled]="(formularioEnviado && !verificarCampos()) || !datosCargados"
+    >
+      Actualizar datos
+    </button>
+  </div>
+</form>

@@ -22,7 +22,7 @@
 
     <div class="navbar__right">
       <div class="navbar__settings">
-        <a class="navbar__settings__link" routerLink="settings">
+        <a class="navbar__settings__link" routerLink="settings" [ngClass]="{'navbar__settings__link--active': rutaActual.startsWith('/settings')}">
           <mat-icon
             fontIcon="settings"
             class="navbar__settings__icon"

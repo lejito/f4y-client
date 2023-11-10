@@ -1,0 +1,105 @@
+<form class="form" (ngSubmit)="actualizar()">
+  <div class="form__column">
+    <div class="form__row">
+      <div class="form__group">
+        <label class="form__label" for="primerNombre">Primer nombre</label>
+        <input
+          type="text"
+          id="primerNombre"
+          name="primerNombre"
+          class="form__input"
+          placeholder="Ingresa tu primer nombre"
+          [(ngModel)]="formulario.primerNombre"
+          [disabled]="!datosCargados"
+        />
+        <span
+          class="form__invalid-text"
+          *ngIf="formularioEnviado && !formulario.primerNombre"
+        >
+          El primer nombre es requerido.
+        </span>
+        <span
+          class="form__invalid-text"
+          *ngIf="formularioEnviado && formulario.primerNombre.length > 20"
+        >
+          El primer nombre debe ser menor a 20 caracteres.
+        </span>
+      </div>
+
+      <div class="form__group">
+        <label class="form__label" for="segundoNombre">Segundo nombre</label>
+        <input
+          type="text"
+          id="segundoNombre"
+          name="segundoNombre"
+          class="form__input"
+          placeholder="Ingresa tu segundo nombre"
+          [(ngModel)]="formulario.segundoNombre"
+          [disabled]="!datosCargados"
+        />
+        <span
+          class="form__invalid-text"
+          *ngIf="formularioEnviado && formulario.segundoNombre.length > 20"
+        >
+          El segundo nombre debe ser menor a 20 caracteres.
+        </span>
+      </div>
+    </div>
+
+    <div class="form__row">
+      <div class="form__group">
+        <label class="form__label" for="primerApellido">Primer apellido</label>
+        <input
+          type="text"
+          id="primerApellido"
+          name="primerApellido"
+          class="form__input"
+          placeholder="Ingresa tu primer apellido"
+          [(ngModel)]="formulario.primerApellido"
+          [disabled]="!datosCargados"
+        />
+        <span
+          class="form__invalid-text"
+          *ngIf="formularioEnviado && !formulario.primerApellido"
+        >
+          El primer apellido es requerido.
+        </span>
+        <span
+          class="form__invalid-text"
+          *ngIf="formularioEnviado && formulario.primerApellido.length > 20"
+        >
+          El primer apellido debe ser menor a 20 caracteres.
+        </span>
+      </div>
+
+      <div class="form__group">
+        <label class="form__label" for="segundoApellido"
+          >Segundo apellido</label
+        >
+        <input
+          type="text"
+          id="segundoApellido"
+          name="segundoApellido"
+          class="form__input"
+          placeholder="Ingresa tu segundo apellido"
+          [(ngModel)]="formulario.segundoApellido"
+          [disabled]="!datosCargados"
+        />
+        <span
+          class="form__invalid-text"
+          *ngIf="formularioEnviado && formulario.segundoApellido.length > 20"
+        >
+          El segundo apellido debe ser menor a 20 caracteres.
+        </span>
+      </div>
+    </div>
+
+    <button
+      class="form__button"
+      type="submit"
+      [disabled]="(formularioEnviado && !verificarCampos()) || !datosCargados"
+    >
+      Actualizar datos
+    </button>
+  </div>
+</form>

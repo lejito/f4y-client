@@ -38,7 +38,7 @@ export class LoadingComponent implements OnInit {
     'Dale un respiro a tu mouse...',
     '¡Prepárate para la aventura!',
     'Ajustando los últimos detalles…',
-    'Cargando sorpresas…',
+    'Cargando algoritmos avanzados…',
     '¡Estamos calentando los motores!',
   ];
 
@@ -46,7 +46,6 @@ export class LoadingComponent implements OnInit {
   public showMessage = true;
 
   ngOnInit(): void {
-    console.log('HOLAHOLA');
     setInterval(() => {
       this.showMessage = false;
       setTimeout(() => {

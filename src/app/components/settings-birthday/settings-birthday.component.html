@@ -1,0 +1,30 @@
+<form class="form" (ngSubmit)="actualizar()">
+  <div class="form__column">
+    <div class="form__group">
+      <label class="form__label" for="fechaNacimiento"
+        >Fecha de nacimiento</label
+      >
+      <input
+        type="date"
+        id="fechaNacimiento"
+        name="fechaNacimiento"
+        class="form__input"
+        placeholder="Ingresa tu fecha de nacimiento"
+        [(ngModel)]="formulario.fechaNacimiento"
+        [disabled]="!datosCargados"
+      />
+      <span class="form__invalid-text" *ngIf="formularioEnviado && !formulario.fechaNacimiento">
+        La fecha de nacimiento es requerida.
+      </span>
+      <span class="form__invalid-text" *ngIf="formularioEnviado &&
+      !!formulario.fechaNacimiento &&
+      cuentasService.calcularEdad(formulario.fechaNacimiento) < 18">
+        Para usar Fin4Youth, debes ser mayor de 18 años.
+      </span>
+    </div>
+
+    <button class="form__button" type="submit" [disabled]="(formularioEnviado && !verificarCampos()) || !datosCargados">
+      Actualizar datos
+    </button>
+  </div>
+</form>

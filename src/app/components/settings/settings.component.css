@@ -1,0 +1,63 @@
+.settings__menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.settings__menu__list {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.settings__menu__option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: var(--font-size-text-big);
+  color: var(--color-dark);
+  gap: 4px;
+  padding: 10px 12px 16px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+
+.settings__menu__option:hover {
+  background-color: var(--color-light-gray);
+}
+
+.settings__menu__option--selected {
+  font-weight: bold;
+  color: var(--color-secondary);
+}
+
+.settings__menu__option-line {
+  width: 100%;
+  height: 3px;
+  border-radius: 3px;
+  background-color: var(--color-secondary);
+  opacity: 0;
+  transition: all 300ms ease-in-out;
+}
+
+.settings__menu__option--selected .settings__menu__option-line {
+  opacity: 1;
+}
+
+.settings__menu__option:hover .settings__menu__option-line {
+  opacity: 1;
+  background-color: var(--color-dark);
+}
+
+.settings__menu__option--selected:hover .settings__menu__option-line {
+  background-color: var(--color-secondary);
+}
+
+.settings__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}

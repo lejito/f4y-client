@@ -8,6 +8,11 @@ import { Error404Component } from './components/error404/error404.component';
 import { PanelComponent } from './components/panel/panel.component';
 import { HomeComponent } from './components/home/home.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { SettingsIdentityComponent } from './components/settings-identity/settings-identity.component';
+import { SettingsNameComponent } from './components/settings-name/settings-name.component';
+import { SettingsBirthdayComponent } from './components/settings-birthday/settings-birthday.component';
+import { SettingsEmailComponent } from './components/settings-email/settings-email.component';
+import { SettingsPasswordComponent } from './components/settings-password/settings-password.component';
 import { SavingsComponent } from './components/savings/savings.component';
 
 const routes: Routes = [
@@ -22,6 +27,14 @@ const routes: Routes = [
       {
         path: 'settings',
         component: SettingsComponent,
+        children: [
+          { path: '', redirectTo: 'identity', pathMatch: 'full' },
+          { path: 'identity', component: SettingsIdentityComponent },
+          { path: 'name', component: SettingsNameComponent },
+          { path: 'birthday', component: SettingsBirthdayComponent },
+          { path: 'email', component: SettingsEmailComponent },
+          { path: 'password', component: SettingsPasswordComponent },
+        ],
       },
       {
         path: 'savings',

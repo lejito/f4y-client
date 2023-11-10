@@ -15,6 +15,11 @@ import { HomeComponent } from './components/home/home.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { SavingsComponent } from './components/savings/savings.component';
+import { SettingsIdentityComponent } from './components/settings-identity/settings-identity.component';
+import { SettingsNameComponent } from './components/settings-name/settings-name.component';
+import { SettingsBirthdayComponent } from './components/settings-birthday/settings-birthday.component';
+import { SettingsEmailComponent } from './components/settings-email/settings-email.component';
+import { SettingsPasswordComponent } from './components/settings-password/settings-password.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +33,11 @@ import { SavingsComponent } from './components/savings/savings.component';
     LoadingComponent,
     SettingsComponent,
     SavingsComponent,
+    SettingsIdentityComponent,
+    SettingsNameComponent,
+    SettingsBirthdayComponent,
+    SettingsEmailComponent,
+    SettingsPasswordComponent,
   ],
   imports: [
     BrowserModule,

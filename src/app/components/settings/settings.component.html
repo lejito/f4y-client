@@ -1,1 +1,76 @@
-<p>settings works!</p>
+<div class="page">
+  <div class="settings__menu">
+    <ul class="settings__menu__list">
+      <li
+        class="settings__menu__option"
+        [ngClass]="{ 'settings__menu__option--selected': ruta == 'identity' }"
+        routerLink="identity"
+      >
+        <mat-icon
+          fontIcon="badge"
+          class="settings__menu__option__icon"
+        ></mat-icon>
+        <span class="settings__menu__option__text">Identificación</span>
+        <div class="settings__menu__option-line"></div>
+      </li>
+
+      <li
+        class="settings__menu__option"
+        [ngClass]="{ 'settings__menu__option--selected': ruta == 'name' }"
+        routerLink="name"
+      >
+        <mat-icon
+          fontIcon="border_color"
+          class="settings__menu__option__icon"
+        ></mat-icon>
+        <span class="settings__menu__option__text">Nombre</span>
+        <div class="settings__menu__option-line"></div>
+      </li>
+
+      <li
+        class="settings__menu__option"
+        [ngClass]="{ 'settings__menu__option--selected': ruta == 'birthday' }"
+        routerLink="birthday"
+      >
+        <mat-icon
+          fontIcon="calendar_month"
+          class="settings__menu__option__icon"
+        ></mat-icon>
+        <span class="settings__menu__option__text">Fecha de nacimiento</span>
+        <div class="settings__menu__option-line"></div>
+      </li>
+
+      <li
+        class="settings__menu__option"
+        [ngClass]="{ 'settings__menu__option--selected': ruta == 'email' }"
+        routerLink="email"
+      >
+        <mat-icon
+          fontIcon="email"
+          class="settings__menu__option__icon"
+        ></mat-icon>
+        <span class="settings__menu__option__text">Correo electrónico</span>
+        <div class="settings__menu__option-line"></div>
+      </li>
+
+      <li
+        class="settings__menu__option"
+        [ngClass]="{ 'settings__menu__option--selected': ruta == 'password' }"
+        routerLink="password"
+      >
+        <mat-icon
+          fontIcon="key"
+          class="settings__menu__option__icon"
+        ></mat-icon>
+        <span class="settings__menu__option__text">Contraseña</span>
+        <div class="settings__menu__option-line"></div>
+      </li>
+    </ul>
+  </div>
+
+  <hr />
+
+  <div class="settings__content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
