@@ -1,22 +1,202 @@
 <div class="page">
   <div class="savings__left">
-    <div class="savings__card">
-      <div class="savings__card__header">
-        <h4 class="savings__card__title">Cuenta de ahorros</h4>
+    <div class="account__card">
+      <div class="account__card__header">
+        <h5 class="account__card__title">Cuenta de ahorros</h5>
       </div>
-      <div class="savings__card__content">
-        <h5 class="savings__card__subtitle">Tu dinero</h5>
-        <div class="savings__card__balance">
-          <span class="savings__card__amount">
-            $ 100,000,000.00
-          </span>
-          <i class="fa-solid fa-eye-slash"></i>
+      <div class="account__card__content">
+        <h4 class="account__card__subtitle">Tu dinero</h4>
+        <div class="account__card__balance">
+          <span class="account__card__amount">$ 100,000,000.00</span>
+          <button class="account__card__balance__toggle">
+            <i
+              class="account__card__amount__icon fa-solid fa-eye-slash fa-xl"
+            ></i>
+          </button>
+        </div>
+        <div class="account__card__options">
+          <button class="account__card__button account__card__button--load">
+            <i
+              class="account__card__button__icon fa-regular fa-square-plus fa-2xl"
+            ></i>
+            <span class="account__card__button__text">Cargar</span>
+          </button>
+          <button class="account__card__button account__card__button--unload">
+            <i
+              class="account__card__button__icon fa-regular fa-square-minus fa-2xl"
+            ></i>
+            <span class="account__card__button__text">Descargar</span>
+          </button>
         </div>
       </div>
     </div>
   </div>
 
   <div class="savings__right">
+    <div class="movements">
+      <h5 class="movements__title">Tus últimos movimientos</h5>
 
+      <ul class="movements__list">
+        <li class="movements__item movements__item--load">
+          <div class="movements__item__left">
+            <i class="movements__icon fa-solid fa-money-bill-wave fa-xl"></i>
+            <div class="movements__details">
+              <span class="movements__details__desc">Carga a cuenta</span>
+              <span class="movements__details__date"
+                >11/11/2023 12:00 a.m.</span
+              >
+            </div>
+          </div>
+          <span class="movements__amount">$ 105,700.00</span>
+        </li>
+
+        <li class="movements__item movements__item--load">
+          <div class="movements__item__left">
+            <i class="movements__icon fa-solid fa-money-bill-wave fa-xl"></i>
+            <div class="movements__details">
+              <span class="movements__details__desc">Carga a cuenta</span>
+              <span class="movements__details__date"
+                >10/11/2023 09:38 p.m.</span
+              >
+            </div>
+          </div>
+          <span class="movements__amount">$ 226,340.00</span>
+        </li>
+
+        <li class="movements__item movements__item--unload">
+          <div class="movements__item__left">
+            <i class="movements__icon fa-solid fa-money-bill-wave fa-xl"></i>
+            <div class="movements__details">
+              <span class="movements__details__desc"
+                >Descarga desde cuenta</span
+              >
+              <span class="movements__details__date"
+                >10/11/2023 11:20 a.m.</span
+              >
+            </div>
+          </div>
+          <span class="movements__amount">$ -12,000.00</span>
+        </li>
+
+        <li class="movements__item movements__item--unload">
+          <div class="movements__item__left">
+            <i class="movements__icon fa-solid fa-wallet fa-xl"></i>
+            <div class="movements__details">
+              <span class="movements__details__desc">Carga a bolsillo</span>
+              <span class="movements__details__date"
+                >09/11/2023 07:02 p.m.</span
+              >
+            </div>
+          </div>
+          <span class="movements__amount">$ -50,000.00</span>
+        </li>
+
+        <li class="movements__item movements__item--load">
+          <div class="movements__item__left">
+            <i class="movements__icon fa-solid fa-wallet fa-xl"></i>
+            <div class="movements__details">
+              <span class="movements__details__desc"
+                >Descarga desde bolsillo</span
+              >
+              <span class="movements__details__date"
+                >09/11/2023 03:37 p.m.</span
+              >
+            </div>
+          </div>
+          <span class="movements__amount">$ 21,000.00</span>
+        </li>
+
+        <li class="movements__item movements__item--load">
+          <div class="movements__item__left">
+            <i class="movements__icon fa-solid fa-receipt fa-xl"></i>
+            <div class="movements__details">
+              <span class="movements__details__desc">Liquidación de CDT</span>
+              <span class="movements__details__date"
+                >09/11/2023 03:37 p.m.</span
+              >
+            </div>
+          </div>
+          <span class="movements__amount">$ 5,350,000.00</span>
+        </li>
+
+        <li class="movements__item movements__item--load">
+          <div class="movements__item__left">
+            <i class="movements__icon fa-solid fa-receipt fa-xl"></i>
+            <div class="movements__details">
+              <span class="movements__details__desc">Liquidación de CDT</span>
+              <span class="movements__details__date"
+                >09/11/2023 03:37 p.m.</span
+              >
+            </div>
+          </div>
+          <span class="movements__amount">$ 5,350,000.00</span>
+        </li>
+
+        <li class="movements__item movements__item--load">
+          <div class="movements__item__left">
+            <i class="movements__icon fa-solid fa-receipt fa-xl"></i>
+            <div class="movements__details">
+              <span class="movements__details__desc">Liquidación de CDT</span>
+              <span class="movements__details__date"
+                >09/11/2023 03:37 p.m.</span
+              >
+            </div>
+          </div>
+          <span class="movements__amount">$ 5,350,000.00</span>
+        </li>
+
+        <li class="movements__item movements__item--load">
+          <div class="movements__item__left">
+            <i class="movements__icon fa-solid fa-receipt fa-xl"></i>
+            <div class="movements__details">
+              <span class="movements__details__desc">Liquidación de CDT</span>
+              <span class="movements__details__date"
+                >09/11/2023 03:37 p.m.</span
+              >
+            </div>
+          </div>
+          <span class="movements__amount">$ 5,350,000.00</span>
+        </li>
+
+        <li class="movements__item movements__item--load">
+          <div class="movements__item__left">
+            <i class="movements__icon fa-solid fa-receipt fa-xl"></i>
+            <div class="movements__details">
+              <span class="movements__details__desc">Liquidación de CDT</span>
+              <span class="movements__details__date"
+                >09/11/2023 03:37 p.m.</span
+              >
+            </div>
+          </div>
+          <span class="movements__amount">$ 5,350,000.00</span>
+        </li>
+
+        <li class="movements__item movements__item--load">
+          <div class="movements__item__left">
+            <i class="movements__icon fa-solid fa-receipt fa-xl"></i>
+            <div class="movements__details">
+              <span class="movements__details__desc">Liquidación de CDT</span>
+              <span class="movements__details__date"
+                >09/11/2023 03:37 p.m.</span
+              >
+            </div>
+          </div>
+          <span class="movements__amount">$ 5,350,000.00</span>
+        </li>
+
+        <li class="movements__item movements__item--load">
+          <div class="movements__item__left">
+            <i class="movements__icon fa-solid fa-receipt fa-xl"></i>
+            <div class="movements__details">
+              <span class="movements__details__desc">Liquidación de CDT</span>
+              <span class="movements__details__date"
+                >09/11/2023 03:37 p.m.</span
+              >
+            </div>
+          </div>
+          <span class="movements__amount">$ 5,350,000.00</span>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

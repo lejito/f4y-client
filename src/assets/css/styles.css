@@ -28,6 +28,9 @@
   --color-primary-hover: #088ae7;
   --color-secondary-hover: #9034d5;
   --color-gray-hover: #535555;
+  --color-success-hover:  #15713b;
+  --color-warning-hover: #d39126;
+  --color-danger-hover: #7d241a;
   --color-primary-opaque: rgba(5, 109, 184, 0.5);
   --color-tertiary-opaque: rgba(128, 171, 146, 0.5);
 }
