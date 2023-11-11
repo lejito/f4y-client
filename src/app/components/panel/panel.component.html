@@ -7,7 +7,7 @@
       </h5>
       <ng-template #anyRute>
         <button class="back__button" routerLink="/panel">
-          <mat-icon fontIcon="arrow_back" class="back-button__icon"></mat-icon>
+          <i class="back-button__icon fa-solid fa-arrow-left fa-xl"></i>
           <span>Volver a Inicio</span>
         </button>
       </ng-template>
@@ -23,11 +23,8 @@
     <div class="navbar__right">
       <div class="navbar__settings">
         <a class="navbar__settings__link" routerLink="settings" [ngClass]="{'navbar__settings__link--active': rutaActual.startsWith('/settings')}">
-          <mat-icon
-            fontIcon="settings"
-            class="navbar__settings__icon"
-          ></mat-icon>
-          <span class="navbar__settings__text">Ajustes</span>
+          <i class="navbar__settings__icon fa-solid fa-user-gear fa-xl"></i>
+          <span class="navbar__settings__text">Actualizar datos</span>
         </a>
       </div>
 

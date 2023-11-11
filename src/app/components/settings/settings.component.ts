@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -9,7 +10,9 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./settings.component.css'],
 })
 export class SettingsComponent implements OnInit, OnDestroy {
-  constructor(private router: Router) {}
+  constructor(private title: Title, private router: Router) {
+    this.title.setTitle('Fin4Youth: Actualizar datos');
+  }
 
   public ruta = this.getRoute();
   private subscription = new Subscription();

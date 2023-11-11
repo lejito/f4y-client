@@ -6,10 +6,7 @@
         [ngClass]="{ 'settings__menu__option--selected': ruta == 'identity' }"
         routerLink="identity"
       >
-        <mat-icon
-          fontIcon="badge"
-          class="settings__menu__option__icon"
-        ></mat-icon>
+        <i class="settings__menu__option__icon fa-solid fa-id-card fa-xl"></i>
         <span class="settings__menu__option__text">Identificación</span>
         <div class="settings__menu__option-line"></div>
       </li>
@@ -19,10 +16,7 @@
         [ngClass]="{ 'settings__menu__option--selected': ruta == 'name' }"
         routerLink="name"
       >
-        <mat-icon
-          fontIcon="border_color"
-          class="settings__menu__option__icon"
-        ></mat-icon>
+        <i class="settings__menu__option__icon fa-solid fa-signature fa-xl"></i>
         <span class="settings__menu__option__text">Nombre</span>
         <div class="settings__menu__option-line"></div>
       </li>
@@ -32,10 +26,9 @@
         [ngClass]="{ 'settings__menu__option--selected': ruta == 'birthday' }"
         routerLink="birthday"
       >
-        <mat-icon
-          fontIcon="calendar_month"
-          class="settings__menu__option__icon"
-        ></mat-icon>
+        <i
+          class="settings__menu__option__icon fa-solid fa-cake-candles fa-xl"
+        ></i>
         <span class="settings__menu__option__text">Fecha de nacimiento</span>
         <div class="settings__menu__option-line"></div>
       </li>
@@ -45,10 +38,7 @@
         [ngClass]="{ 'settings__menu__option--selected': ruta == 'email' }"
         routerLink="email"
       >
-        <mat-icon
-          fontIcon="email"
-          class="settings__menu__option__icon"
-        ></mat-icon>
+        <i class="settings__menu__option__icon fa-solid fa-envelope fa-xl"></i>
         <span class="settings__menu__option__text">Correo electrónico</span>
         <div class="settings__menu__option-line"></div>
       </li>
@@ -58,10 +48,7 @@
         [ngClass]="{ 'settings__menu__option--selected': ruta == 'password' }"
         routerLink="password"
       >
-        <mat-icon
-          fontIcon="key"
-          class="settings__menu__option__icon"
-        ></mat-icon>
+        <i class="settings__menu__option__icon fa-solid fa-key fa-xl"></i>
         <span class="settings__menu__option__text">Contraseña</span>
         <div class="settings__menu__option-line"></div>
       </li>

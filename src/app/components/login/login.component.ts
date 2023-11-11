@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { LoadingService } from 'src/app/services/loading.service';
 import { CuentasService } from 'src/app/services/cuentas.service';
 
@@ -9,9 +10,12 @@ import { CuentasService } from 'src/app/services/cuentas.service';
 })
 export class LoginComponent {
   constructor(
+    private title: Title,
     private loadingService: LoadingService,
     private cuentasService: CuentasService
-  ) {}
+  ) {
+    this.title.setTitle('Fin4Youth: Inicio de sesión');
+  }
 
   public formularioEnviado = false;
 
