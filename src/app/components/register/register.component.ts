@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { LoadingService } from 'src/app/services/loading.service';
+import { UtilsService } from 'src/app/services/utils.service';
 import { CuentasService } from 'src/app/services/cuentas.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { CuentasService } from 'src/app/services/cuentas.service';
 export class RegisterComponent {
   constructor(
     private title: Title,
-    private loadingService: LoadingService,
+    private utilsService: UtilsService,
     public cuentasService: CuentasService
   ) {
     this.title.setTitle('Fin4Youth: Registro');
@@ -19,9 +19,9 @@ export class RegisterComponent {
 
   public formularioEnviado = false;
 
-  public patronCorreo = this.cuentasService.patronCorreo;
+  public patronCorreo = this.utilsService.patronCorreo;
 
-  public patronClave = this.cuentasService.patronClave;
+  public patronClave = this.utilsService.patronClave;
 
   public formulario = {
     tipoIdentificacion: '',
@@ -71,7 +71,7 @@ export class RegisterComponent {
   public async registrar() {
     this.formularioEnviado = true;
     if (this.verificarCampos()) {
-      this.loadingService.isLoading = true;
+      this.utilsService.isLoading = true;
       await this.cuentasService.crear(
         this.formulario.tipoIdentificacion,
         this.formulario.numeroIdentificacion,
@@ -85,7 +85,7 @@ export class RegisterComponent {
         this.formulario.correo,
         this.formulario.clave
       );
-      this.loadingService.isLoading = false;
+      this.utilsService.isLoading = false;
     }
   }
 }

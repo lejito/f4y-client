@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertsService } from 'src/app/services/alerts.service';
-import { LoadingService } from 'src/app/services/loading.service';
+import { UtilsService } from 'src/app/services/utils.service';
 import { CuentasService } from 'src/app/services/cuentas.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { CuentasService } from 'src/app/services/cuentas.service';
 export class SettingsNameComponent implements OnInit {
   constructor(
     private alertService: AlertsService,
-    private loadingService: LoadingService,
+    private utilsService: UtilsService,
     private cuentasService: CuentasService
   ) {}
 
@@ -51,7 +51,7 @@ export class SettingsNameComponent implements OnInit {
         .confirm('¿Estás segur@ que deseas modificar el nombre?')
         .then(async (confirmado) => {
           if (confirmado) {
-            this.loadingService.isLoading = true;
+            this.utilsService.isLoading = true;
             await this.cuentasService.actualizarNombre(
               this.formulario.primerNombre,
               !!this.formulario.segundoNombre
@@ -62,7 +62,7 @@ export class SettingsNameComponent implements OnInit {
                 ? this.formulario.segundoApellido
                 : null
             );
-            this.loadingService.isLoading = false;
+            this.utilsService.isLoading = false;
           }
         });
     }

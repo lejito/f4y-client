@@ -28,7 +28,7 @@
   --color-primary-hover: #088ae7;
   --color-secondary-hover: #9034d5;
   --color-gray-hover: #535555;
-  --color-success-hover:  #15713b;
+  --color-success-hover: #15713b;
   --color-warning-hover: #d39126;
   --color-danger-hover: #7d241a;
   --color-primary-opaque: rgba(5, 109, 184, 0.5);
@@ -268,6 +268,7 @@ p {
 .form__column {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
 }
 
@@ -341,4 +342,111 @@ p {
 .form__missing-password:hover {
   text-decoration: underline;
   font-weight: bold;
+}
+
+.dialog-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  transition: all 300ms ease-in-out;
+  z-index: 9999;
+}
+
+.dialog {
+  max-width: 600px;
+  max-height: 80%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-light);
+  border-radius: 20px;
+}
+
+.dialog__header {
+  position: relative;
+  text-align: center;
+  padding: 20px 80px;
+  border-bottom: 1px solid var(--color-gray);
+}
+
+.dialog__title {
+  font-size: var(--font-size-title-4);
+  font-weight: bold;
+  color: var(--color-dark);
+}
+
+.dialog__button-close {
+  top: 18px;
+  right: 18px;
+  position: absolute;
+  color: var(--color-gray);
+  background-color: transparent;
+  padding: 4px 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+
+.dialog__button-close:hover {
+  background-color: var(--color-light-gray);
+}
+
+.dialog__button-close:active {
+  color: var(--color-light);
+  background-color: var(--color-gray);
+}
+
+.dialog__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 32px;
+}
+
+.dialog__content p {
+  font-size: var(--font-size-text-big);
+}
+
+.dialog__button {
+  width: fit-content;
+  font-size: var(--font-size-text-big);
+  font-weight: bold;
+  color: var(--color-light);
+  background-color: var(--color-secondary);
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+
+.dialog__button:hover {
+  background-color: var(--color-secondary-hover);
+}
+
+.dialog__footer {
+  text-align: center;
+  padding: 10px 40px;
+  border-top: 1px solid var(--color-gray);
+}
+
+.dialog__footer__button {
+  font-size: var(--font-size-text-big);
+  font-weight: bold;
+  padding: 10px 20px;
+  color: var(--color-light);
+  background-color: var(--color-danger);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+
+.dialog__footer__button:hover {
+  background-color: var(--color-danger-hover);
 }

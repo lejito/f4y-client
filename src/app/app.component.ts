@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { LoadingService } from './services/loading.service';
+import { UtilsService } from './services/utils.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -8,14 +8,14 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  constructor(private loadingService: LoadingService) {}
+  constructor(private utilsService: UtilsService) {}
 
   public title = 'F4Y';
   public isLoading = true;
   private subscription = new Subscription();
 
   ngOnInit(): void {
-    this.subscription = this.loadingService.isLoading.subscribe((isLoading) => {
+    this.subscription = this.utilsService.isLoading.subscribe((isLoading) => {
       this.isLoading = isLoading;
     });
   }

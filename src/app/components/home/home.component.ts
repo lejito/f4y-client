@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { LoadingService } from 'src/app/services/loading.service';
+import { UtilsService } from 'src/app/services/utils.service';
 import { CuentasService } from 'src/app/services/cuentas.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { CuentasService } from 'src/app/services/cuentas.service';
 export class HomeComponent {
   constructor(
     private title: Title,
-    private loadingService: LoadingService,
+    private utilsService: UtilsService,
     private cuentasService: CuentasService
   ) {
     this.title.setTitle('Fin4Youth: Inicio');
@@ -20,8 +20,8 @@ export class HomeComponent {
   public rutaActual: string = '';
 
   public async cerrarSesion(): Promise<void> {
-    this.loadingService.isLoading = true;
+    this.utilsService.isLoading = true;
     await this.cuentasService.cerrarSesion();
-    this.loadingService.isLoading = false;
+    this.utilsService.isLoading = false;
   }
 }

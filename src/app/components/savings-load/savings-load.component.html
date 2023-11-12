@@ -1,0 +1,26 @@
+<div class="dialog-container">
+  <div class="dialog">
+    <div class="dialog__header">
+      <h4 class="dialog__title">Cargar cuenta</h4>
+      <button class="dialog__button-close" (click)="cerrar()">
+        <i class="fa-solid fa-xmark fa-2xl"></i>
+      </button>
+    </div>
+
+    <div class="dialog__content">
+      <p>
+        Para realizar una carga de saldo a la cuenta de Fin4Youth, debes hacerlo
+        por medio de la aplicación QuyneApp. Haz clic en el botón que aparece
+        a continuación:
+      </p>
+      <a class="dialog__button" [href]="enlaceQuyneApp" target="_blank">Ir a QuyneApp</a>
+      <p>
+        Cuando hayas realizado la transferencia, los cambios se verán reflejados automáticamente cuando cierres este diálogo.
+      </p>
+    </div>
+
+    <div class="dialog__footer">
+      <button class="dialog__footer__button" (click)="cerrar()">Cancelar</button>
+    </div>
+  </div>
+</div>

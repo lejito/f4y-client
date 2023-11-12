@@ -1,11 +1,11 @@
 .page {
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  gap: 80px;
 }
 
 .savings__left {
-  flex-basis: 50%;
+  flex-basis: 45%;
 }
 
 .account__card {
@@ -63,8 +63,21 @@
   background-color: var(--color-light-gray);
 }
 
+.account__card__balance__toggle:active .account__card__amount__icon {
+  color: var(--color-secondary);
+}
+
+.account__card__balance__toggle--show .account__card__amount__icon--show {
+  display: none;
+}
+
+.account__card__balance__toggle--hide .account__card__amount__icon--hide {
+  display: none;
+}
+
 .account__card__amount__icon {
   color: var(--color-gray);
+  transition: all 100ms ease-in-out;
 }
 
 .account__card__options {
@@ -81,7 +94,7 @@
   padding: 16px 30px;
   border-radius: 20px;
   color: var(--color-light);
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
   cursor: pointer;
 }
 
@@ -109,7 +122,7 @@
 }
 
 .savings__right {
-  flex-basis: 50%;
+  flex-basis: 55%;
 }
 
 .movements {
@@ -125,6 +138,7 @@
   display: flex;
   flex-direction: column;
   gap: 22px;
+  padding: 0px 20px;
 }
 
 .movements__item {

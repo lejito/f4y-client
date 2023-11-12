@@ -10,7 +10,7 @@ import {
 } from '../../types/Cuenta';
 import { Router } from '@angular/router';
 import { AlertsService } from './alerts.service';
-import { SessionService } from './session.service';
+import { UtilsService } from './utils.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,21 +19,8 @@ export class CuentasService {
   constructor(
     private router: Router,
     private alertsService: AlertsService,
-    private sessionService: SessionService
+    private utilsService: UtilsService
   ) {}
-
-  private _patronCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-  private _patronClave =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_.,:;!"#$%&/()=?¿¡{}[\]*+~\\|°<>])\S*$/;
-
-  public get patronCorreo() {
-    return this._patronCorreo;
-  }
-
-  public get patronClave() {
-    return this._patronClave;
-  }
 
   public calcularEdad(fechaNacimiento: string) {
     const fechaActual = new Date();
@@ -114,7 +101,7 @@ export class CuentasService {
 
       if (!data.error) {
         this.alertsService.message('success', data.message);
-        this.sessionService.guardarToken(data.body?.token);
+        this.utilsService.guardarToken(data.body?.token);
         this.router.navigate(['/panel']);
         return true;
       } else {
@@ -132,7 +119,7 @@ export class CuentasService {
 
   public async cerrarSesion(): Promise<boolean> {
     try {
-      const token = this.sessionService.obtenerToken();
+      const token = this.utilsService.obtenerToken();
 
       const { data } = await axios.get<Response>(
         `${environment.apiKey}/cuentas/cerrar-sesion`,
@@ -141,7 +128,7 @@ export class CuentasService {
 
       if (!data.error) {
         this.alertsService.message('success', data.message);
-        this.sessionService.borrarToken();
+        this.utilsService.borrarToken();
         this.router.navigate(['/']);
         return true;
       } else {
@@ -161,7 +148,7 @@ export class CuentasService {
     pagina: 'landing' | 'login-register' | 'panel'
   ): Promise<boolean> {
     try {
-      const token = this.sessionService.obtenerToken();
+      const token = this.utilsService.obtenerToken();
 
       if (!!token) {
         const { data } = await axios.get<Response>(
@@ -208,7 +195,7 @@ export class CuentasService {
 
   public async obtenerIdentificacion(): Promise<Identificacion | null> {
     try {
-      const token = this.sessionService.obtenerToken();
+      const token = this.utilsService.obtenerToken();
 
       const { data } = await axios.get<Response>(
         `${environment.apiKey}/cuentas/obtener-identificacion`,
@@ -227,7 +214,7 @@ export class CuentasService {
 
   public async obtenerNombre(): Promise<NombreCompleto | null> {
     try {
-      const token = this.sessionService.obtenerToken();
+      const token = this.utilsService.obtenerToken();
 
       const { data } = await axios.get<Response>(
         `${environment.apiKey}/cuentas/obtener-nombre`,
@@ -246,7 +233,7 @@ export class CuentasService {
 
   public async obtenerFechaNacimiento(): Promise<FechaNacimiento | null> {
     try {
-      const token = this.sessionService.obtenerToken();
+      const token = this.utilsService.obtenerToken();
 
       const { data } = await axios.get<Response>(
         `${environment.apiKey}/cuentas/obtener-fecha-nacimiento`,
@@ -265,7 +252,7 @@ export class CuentasService {
 
   public async obtenerCorreo(): Promise<Correo | null> {
     try {
-      const token = this.sessionService.obtenerToken();
+      const token = this.utilsService.obtenerToken();
 
       const { data } = await axios.get<Response>(
         `${environment.apiKey}/cuentas/obtener-correo`,
@@ -284,7 +271,7 @@ export class CuentasService {
 
   public async verificarClave(clave: string): Promise<boolean> {
     try {
-      const token = this.sessionService.obtenerToken();
+      const token = this.utilsService.obtenerToken();
 
       const { data } = await axios.post<Response>(
         `${environment.apiKey}/cuentas/verificar-clave`,
@@ -307,7 +294,7 @@ export class CuentasService {
     numeroIdentificacion: string
   ): Promise<boolean> {
     try {
-      const token = this.sessionService.obtenerToken();
+      const token = this.utilsService.obtenerToken();
 
       const { data } = await axios.put<Response>(
         `${environment.apiKey}/cuentas/actualizar-identificacion`,
@@ -338,7 +325,7 @@ export class CuentasService {
     segundoApellido: string | null
   ): Promise<boolean> {
     try {
-      const token = this.sessionService.obtenerToken();
+      const token = this.utilsService.obtenerToken();
 
       const { data } = await axios.put<Response>(
         `${environment.apiKey}/cuentas/actualizar-nombre`,
@@ -366,7 +353,7 @@ export class CuentasService {
     fechaNacimiento: string
   ): Promise<boolean> {
     try {
-      const token = this.sessionService.obtenerToken();
+      const token = this.utilsService.obtenerToken();
 
       const { data } = await axios.put<Response>(
         `${environment.apiKey}/cuentas/actualizar-fecha-nacimiento`,
@@ -392,7 +379,7 @@ export class CuentasService {
 
   public async actualizarCorreo(correo: string): Promise<boolean> {
     try {
-      const token = this.sessionService.obtenerToken();
+      const token = this.utilsService.obtenerToken();
 
       const { data } = await axios.put<Response>(
         `${environment.apiKey}/cuentas/actualizar-correo`,
@@ -421,7 +408,7 @@ export class CuentasService {
     clave: string
   ): Promise<boolean> {
     try {
-      const token = this.sessionService.obtenerToken();
+      const token = this.utilsService.obtenerToken();
 
       const { data } = await axios.put<Response>(
         `${environment.apiKey}/cuentas/actualizar-clave`,
@@ -442,6 +429,29 @@ export class CuentasService {
         'Ha ocurrido un error en el servidor. Inténtelo de nuevo más tarde.'
       );
       return false;
+    }
+  }
+
+  public async obtenerSaldo(): Promise<number | null> {
+    try {
+      const token = this.utilsService.obtenerToken();
+
+      const { data } = await axios.get<Response>(
+        `${environment.apiKey}/cuentas/obtener-saldo`,
+        { headers: { Authorization: token } }
+      );
+
+      if (!data.error) {
+        return data.body.saldo;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      this.alertsService.message(
+        'error',
+        'Ha ocurrido un error en el servidor al intentar obtener el saldo.'
+      );
+      return null;
     }
   }
 }

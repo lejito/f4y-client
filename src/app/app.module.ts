@@ -19,6 +19,8 @@ import { SettingsNameComponent } from './components/settings-name/settings-name.
 import { SettingsBirthdayComponent } from './components/settings-birthday/settings-birthday.component';
 import { SettingsEmailComponent } from './components/settings-email/settings-email.component';
 import { SettingsPasswordComponent } from './components/settings-password/settings-password.component';
+import { SavingsLoadComponent } from './components/savings-load/savings-load.component';
+import { SavingsUnloadComponent } from './components/savings-unload/savings-unload.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { SettingsPasswordComponent } from './components/settings-password/settin
     SettingsBirthdayComponent,
     SettingsEmailComponent,
     SettingsPasswordComponent,
+    SavingsLoadComponent,
+    SavingsUnloadComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,85 @@
+<div class="dialog-container">
+  <div class="dialog" @fadeIn>
+    <div class="dialog__header">
+      <h4 class="dialog__title">Descargar cuenta</h4>
+      <button class="dialog__button-close" (click)="cerrar()">
+        <i class="fa-solid fa-xmark fa-2xl"></i>
+      </button>
+    </div>
+
+    <div class="dialog__content">
+      <p>
+        Puedes descargar saldo de tu cuenta por medio de QuyneApp sin ningún
+        costo. Simplemente ingresa el número de cuenta de QuyneApp, digita el
+        monto a transferir, ¡y listo!
+      </p>
+
+      <form class="form" (ngSubmit)="descargar()">
+        <div class="form__column">
+          <div class="form__group">
+            <label class="form__label" for="cuenta"
+              >Número de cuenta de QuyneApp</label
+            >
+            <input
+              type="text"
+              id="cuenta"
+              name="cuenta"
+              class="form__input"
+              placeholder="Ingresa el número de cuenta de QuyneApp"
+              [(ngModel)]="formulario.cuenta"
+            />
+            <span
+              class="form__invalid-text"
+              *ngIf="formularioEnviado && !formulario.cuenta"
+            >
+              El número de cuenta es requerido.
+            </span>
+            <span
+              class="form__invalid-text"
+              *ngIf="formularioEnviado && formulario.cuenta.length > 10"
+            >
+              El número de cuenta debe ser menor a 10 caracteres.
+            </span>
+          </div>
+
+          <div class="form__group">
+            <label class="form__label" for="monto">Monto a descargar</label>
+            <input
+              type="number"
+              id="monto"
+              name="monto"
+              class="form__input"
+              min="5000"
+              placeholder="Ingresa el monto"
+              [(ngModel)]="formulario.monto"
+            />
+            <span
+              class="form__invalid-text"
+              *ngIf="formularioEnviado && !formulario.monto"
+            >
+              El monto es requerido.
+            </span>
+            <span
+              class="form__invalid-text"
+              *ngIf="formularioEnviado && !patronMonto.test(formulario.monto)"
+            >
+              El monto debe ser un número válido mayor a 5000.
+            </span>
+          </div>
+
+          <button
+            class="form__button"
+            type="submit"
+            [disabled]="formularioEnviado && !verificarCampos()"
+          >
+            Descargar saldo
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="dialog__footer">
+      <button class="dialog__footer__button" (click)="cerrar()">Cancelar</button>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertsService } from 'src/app/services/alerts.service';
-import { LoadingService } from 'src/app/services/loading.service';
+import { UtilsService } from 'src/app/services/utils.service';
 import { CuentasService } from 'src/app/services/cuentas.service';
 
 @Component({
@@ -11,13 +11,13 @@ import { CuentasService } from 'src/app/services/cuentas.service';
 export class SettingsPasswordComponent {
   constructor(
     private alertService: AlertsService,
-    private loadingService: LoadingService,
+    private utilsService: UtilsService,
     private cuentasService: CuentasService
   ) {}
 
   public formularioEnviado = false;
 
-  public patronClave = this.cuentasService.patronClave;
+  public patronClave = this.utilsService.patronClave;
 
   public formulario = {
     claveActual: '',
@@ -50,12 +50,12 @@ export class SettingsPasswordComponent {
         .confirm('¿Estás segur@ que deseas modificar la contraseña?')
         .then(async (confirmado) => {
           if (confirmado) {
-            this.loadingService.isLoading = true;
+            this.utilsService.isLoading = true;
             await this.cuentasService.actualizarClave(
               this.formulario.claveActual,
               this.formulario.clave
             );
-            this.loadingService.isLoading = false;
+            this.utilsService.isLoading = false;
             this.limpiarCampos();
             this.formularioEnviado = false;
           }

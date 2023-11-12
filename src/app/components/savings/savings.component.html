@@ -1,3 +1,14 @@
+<app-savings-load
+  [cuenta]="cuentaCarga"
+  *ngIf="dialogoCarga"
+  (closeDialog)="cerrarDialogoCarga()"
+></app-savings-load>
+
+<app-savings-unload
+  *ngIf="dialogoDescarga"
+  (closeDialog)="cerrarDialogoDescarga()"
+></app-savings-unload>
+
 <div class="page">
   <div class="savings__left">
     <div class="account__card">
@@ -7,21 +18,42 @@
       <div class="account__card__content">
         <h4 class="account__card__subtitle">Tu dinero</h4>
         <div class="account__card__balance">
-          <span class="account__card__amount">$ 100,000,000.00</span>
-          <button class="account__card__balance__toggle">
+          <span class="account__card__amount">
+            <span *ngIf="!saldoOculto; else saldoOcultado">{{
+              saldo ? utilsService.convertirCOP(saldo) : "..."
+            }}</span>
+            <ng-template #saldoOcultado>$ *********</ng-template>
+          </span>
+          <button
+            class="account__card__balance__toggle"
+            (click)="toggleSaldoOculto()"
+            [ngClass]="{
+              'account__card__balance__toggle--show': saldoOculto,
+              'account__card__balance__toggle--hide': !saldoOculto
+            }"
+          >
             <i
-              class="account__card__amount__icon fa-solid fa-eye-slash fa-xl"
+              class="account__card__amount__icon account__card__amount__icon--show fa-solid fa-eye fa-xl"
+            ></i>
+            <i
+              class="account__card__amount__icon account__card__amount__icon--hide fa-solid fa-eye-slash fa-xl"
             ></i>
           </button>
         </div>
         <div class="account__card__options">
-          <button class="account__card__button account__card__button--load">
+          <button
+            class="account__card__button account__card__button--load"
+            (click)="abrirDialogoCarga()"
+          >
             <i
               class="account__card__button__icon fa-regular fa-square-plus fa-2xl"
             ></i>
             <span class="account__card__button__text">Cargar</span>
           </button>
-          <button class="account__card__button account__card__button--unload">
+          <button
+            class="account__card__button account__card__button--unload"
+            (click)="abrirDialogoDescarga()"
+          >
             <i
               class="account__card__button__icon fa-regular fa-square-minus fa-2xl"
             ></i>
@@ -37,164 +69,43 @@
       <h5 class="movements__title">Tus últimos movimientos</h5>
 
       <ul class="movements__list">
-        <li class="movements__item movements__item--load">
+        <li
+          class="movements__item"
+          *ngFor="let movimiento of ultimosMovimientos"
+          [ngClass]="{
+            'movements__item--load': tiposLoad.includes(movimiento.tipo),
+            'movements__item--unload': tiposUnload.includes(movimiento.tipo),
+          }"
+        >
           <div class="movements__item__left">
-            <i class="movements__icon fa-solid fa-money-bill-wave fa-xl"></i>
+            <i
+              class="movements__icon fa-solid fa-money-bill-wave fa-xl"
+              [ngClass]="{
+                'fa-money-bill-wave':
+                  movimiento.tipo == 'carga-cuenta' ||
+                  movimiento.tipo == 'descarga-cuenta',
+                'fa-wallet':
+                  movimiento.tipo == 'carga-bolsillo' ||
+                  movimiento.tipo == 'descarga-bolsillo',
+                'fa-receipt':
+                  movimiento.tipo == 'inversion-cdt' ||
+                  movimiento.tipo == 'liquidacion-cdt' ||
+                  movimiento.tipo == 'cancelacion-cdt',
+                  
+              }"
+            ></i>
             <div class="movements__details">
-              <span class="movements__details__desc">Carga a cuenta</span>
-              <span class="movements__details__date"
-                >11/11/2023 12:00 a.m.</span
-              >
+              <span class="movements__details__desc">{{
+                utilsService.obtenerNombreTipoMovimiento(movimiento.tipo)
+              }}</span>
+              <span class="movements__details__date">
+                {{ utilsService.convertirFecha(movimiento.fecha) }}
+              </span>
             </div>
           </div>
-          <span class="movements__amount">$ 105,700.00</span>
-        </li>
-
-        <li class="movements__item movements__item--load">
-          <div class="movements__item__left">
-            <i class="movements__icon fa-solid fa-money-bill-wave fa-xl"></i>
-            <div class="movements__details">
-              <span class="movements__details__desc">Carga a cuenta</span>
-              <span class="movements__details__date"
-                >10/11/2023 09:38 p.m.</span
-              >
-            </div>
-          </div>
-          <span class="movements__amount">$ 226,340.00</span>
-        </li>
-
-        <li class="movements__item movements__item--unload">
-          <div class="movements__item__left">
-            <i class="movements__icon fa-solid fa-money-bill-wave fa-xl"></i>
-            <div class="movements__details">
-              <span class="movements__details__desc"
-                >Descarga desde cuenta</span
-              >
-              <span class="movements__details__date"
-                >10/11/2023 11:20 a.m.</span
-              >
-            </div>
-          </div>
-          <span class="movements__amount">$ -12,000.00</span>
-        </li>
-
-        <li class="movements__item movements__item--unload">
-          <div class="movements__item__left">
-            <i class="movements__icon fa-solid fa-wallet fa-xl"></i>
-            <div class="movements__details">
-              <span class="movements__details__desc">Carga a bolsillo</span>
-              <span class="movements__details__date"
-                >09/11/2023 07:02 p.m.</span
-              >
-            </div>
-          </div>
-          <span class="movements__amount">$ -50,000.00</span>
-        </li>
-
-        <li class="movements__item movements__item--load">
-          <div class="movements__item__left">
-            <i class="movements__icon fa-solid fa-wallet fa-xl"></i>
-            <div class="movements__details">
-              <span class="movements__details__desc"
-                >Descarga desde bolsillo</span
-              >
-              <span class="movements__details__date"
-                >09/11/2023 03:37 p.m.</span
-              >
-            </div>
-          </div>
-          <span class="movements__amount">$ 21,000.00</span>
-        </li>
-
-        <li class="movements__item movements__item--load">
-          <div class="movements__item__left">
-            <i class="movements__icon fa-solid fa-receipt fa-xl"></i>
-            <div class="movements__details">
-              <span class="movements__details__desc">Liquidación de CDT</span>
-              <span class="movements__details__date"
-                >09/11/2023 03:37 p.m.</span
-              >
-            </div>
-          </div>
-          <span class="movements__amount">$ 5,350,000.00</span>
-        </li>
-
-        <li class="movements__item movements__item--load">
-          <div class="movements__item__left">
-            <i class="movements__icon fa-solid fa-receipt fa-xl"></i>
-            <div class="movements__details">
-              <span class="movements__details__desc">Liquidación de CDT</span>
-              <span class="movements__details__date"
-                >09/11/2023 03:37 p.m.</span
-              >
-            </div>
-          </div>
-          <span class="movements__amount">$ 5,350,000.00</span>
-        </li>
-
-        <li class="movements__item movements__item--load">
-          <div class="movements__item__left">
-            <i class="movements__icon fa-solid fa-receipt fa-xl"></i>
-            <div class="movements__details">
-              <span class="movements__details__desc">Liquidación de CDT</span>
-              <span class="movements__details__date"
-                >09/11/2023 03:37 p.m.</span
-              >
-            </div>
-          </div>
-          <span class="movements__amount">$ 5,350,000.00</span>
-        </li>
-
-        <li class="movements__item movements__item--load">
-          <div class="movements__item__left">
-            <i class="movements__icon fa-solid fa-receipt fa-xl"></i>
-            <div class="movements__details">
-              <span class="movements__details__desc">Liquidación de CDT</span>
-              <span class="movements__details__date"
-                >09/11/2023 03:37 p.m.</span
-              >
-            </div>
-          </div>
-          <span class="movements__amount">$ 5,350,000.00</span>
-        </li>
-
-        <li class="movements__item movements__item--load">
-          <div class="movements__item__left">
-            <i class="movements__icon fa-solid fa-receipt fa-xl"></i>
-            <div class="movements__details">
-              <span class="movements__details__desc">Liquidación de CDT</span>
-              <span class="movements__details__date"
-                >09/11/2023 03:37 p.m.</span
-              >
-            </div>
-          </div>
-          <span class="movements__amount">$ 5,350,000.00</span>
-        </li>
-
-        <li class="movements__item movements__item--load">
-          <div class="movements__item__left">
-            <i class="movements__icon fa-solid fa-receipt fa-xl"></i>
-            <div class="movements__details">
-              <span class="movements__details__desc">Liquidación de CDT</span>
-              <span class="movements__details__date"
-                >09/11/2023 03:37 p.m.</span
-              >
-            </div>
-          </div>
-          <span class="movements__amount">$ 5,350,000.00</span>
-        </li>
-
-        <li class="movements__item movements__item--load">
-          <div class="movements__item__left">
-            <i class="movements__icon fa-solid fa-receipt fa-xl"></i>
-            <div class="movements__details">
-              <span class="movements__details__desc">Liquidación de CDT</span>
-              <span class="movements__details__date"
-                >09/11/2023 03:37 p.m.</span
-              >
-            </div>
-          </div>
-          <span class="movements__amount">$ 5,350,000.00</span>
+          <span class="movements__amount">
+            {{ utilsService.convertirCOP(movimiento.monto) }}
+          </span>
         </li>
       </ul>
     </div>

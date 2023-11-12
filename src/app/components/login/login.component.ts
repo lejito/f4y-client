@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { LoadingService } from 'src/app/services/loading.service';
+import { UtilsService } from 'src/app/services/utils.service';
 import { CuentasService } from 'src/app/services/cuentas.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { CuentasService } from 'src/app/services/cuentas.service';
 export class LoginComponent {
   constructor(
     private title: Title,
-    private loadingService: LoadingService,
+    private utilsService: UtilsService,
     private cuentasService: CuentasService
   ) {
     this.title.setTitle('Fin4Youth: Inicio de sesión');
@@ -36,13 +36,13 @@ export class LoginComponent {
   public async ingresar() {
     this.formularioEnviado = true;
     if (this.verificarCampos()) {
-      this.loadingService.isLoading = true;
+      this.utilsService.isLoading = true;
       await this.cuentasService.iniciarSesion(
         this.formulario.tipoIdentificacion,
         this.formulario.numeroIdentificacion,
         this.formulario.clave
       );
-      this.loadingService.isLoading = false;
+      this.utilsService.isLoading = false;
     }
   }
 }

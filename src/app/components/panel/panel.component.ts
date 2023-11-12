@@ -59,7 +59,11 @@ export class PanelComponent implements OnInit, OnDestroy {
     });
     const fechaTexto =
       fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);
-    const horaTexto = fecha.toLocaleTimeString('es-CO');
+    const horaTexto = fecha.toLocaleTimeString('es-CO', {
+      hour: 'numeric',
+      minute: '2-digit',
+      second: '2-digit',
+    });
     return { fecha: fechaTexto, hora: horaTexto };
   }
 
