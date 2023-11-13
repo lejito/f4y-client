@@ -21,6 +21,7 @@ import { SettingsEmailComponent } from './components/settings-email/settings-ema
 import { SettingsPasswordComponent } from './components/settings-password/settings-password.component';
 import { SavingsLoadComponent } from './components/savings-load/savings-load.component';
 import { SavingsUnloadComponent } from './components/savings-unload/savings-unload.component';
+import { SavingsUnloadSuccessComponent } from './components/savings-unload-success/savings-unload-success.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { SavingsUnloadComponent } from './components/savings-unload/savings-unlo
     SettingsPasswordComponent,
     SavingsLoadComponent,
     SavingsUnloadComponent,
+    SavingsUnloadSuccessComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { TipoMovimiento } from '../../types/Movimiento';
+import * as moment from 'moment';
 
 @Injectable({ providedIn: 'root' })
 export class UtilsService {
@@ -14,10 +15,12 @@ export class UtilsService {
   private _isLoading = new BehaviorSubject<boolean>(false);
   private _saldoOculto = new BehaviorSubject<boolean>(false);
 
-  private readonly _patronCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  private readonly _patronCorreo =
+    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   private readonly _patronClave =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_.,:;!"#$%&/()=?¿¡{}[\]*+~\\|°<>])\S*$/;
-  private readonly _patronMonto = /^(5000|500[1-9]|50[1-9]\d|5[1-9]\d{2}|[6-9]\d{3}|\d{5,14})$/;
+  private readonly _patronMonto =
+    /^(5000|500[1-9]|50[1-9]\d|5[1-9]\d{2}|[6-9]\d{3}|\d{5,14})$/;
 
   public get patronCorreo() {
     return this._patronCorreo;
@@ -71,7 +74,9 @@ export class UtilsService {
   }
 
   public convertirFecha(fecha: string): string {
-    return new Date(fecha).toLocaleString('es-CO', {
+    const timestamp = moment(fecha).utcOffset(-10).format('yyyy/MM/DD hh:mm:ss A');
+
+    return new Date(timestamp).toLocaleString('es-CO', {
       day: '2-digit',
       month: 'short',
       hour: 'numeric',

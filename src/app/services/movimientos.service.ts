@@ -37,4 +37,33 @@ export class MovimientosService {
       return null;
     }
   }
+
+  public async descargarCuenta(
+    entidadDestino: string,
+    cuentaDestino: string,
+    monto: number
+  ): Promise<Movimiento | null> {
+    try {
+      const token = this.utilsService.obtenerToken();
+
+      const { data } = await axios.post<Response>(
+        `${environment.apiKey}/movimientos/descargar-cuenta`,
+        { entidadDestino, cuentaDestino, monto },
+        { headers: { Authorization: token } }
+      );
+
+      if (!data.error) {
+        return data.body.movimiento;
+      } else {
+        this.alertsService.message('error', data.message);
+        return null;
+      }
+    } catch (error) {
+      this.alertsService.message(
+        'error',
+        'Ha ocurrido un error en el servidor al intentar realizar la transacción.'
+      );
+      return null;
+    }
+  }
 }

@@ -33,6 +33,7 @@
   --color-danger-hover: #7d241a;
   --color-primary-opaque: rgba(5, 109, 184, 0.5);
   --color-tertiary-opaque: rgba(128, 171, 146, 0.5);
+  --color-tertiary-bg: rgba(128, 171, 146, 0.75);
 }
 
 body {
@@ -118,7 +119,7 @@ p {
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.75);
   transition: all 300ms ease-in-out;
-  z-index: 99999;
+  z-index: 300;
 }
 
 .loading__loader {
@@ -356,7 +357,7 @@ p {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px;
   transition: all 300ms ease-in-out;
-  z-index: 9999;
+  z-index: 200;
 }
 
 .dialog {
@@ -377,6 +378,12 @@ p {
 
 .dialog__title {
   font-size: var(--font-size-title-4);
+  font-weight: bold;
+  color: var(--color-dark);
+}
+
+.dialog__subtitle {
+  font-size: var(--font-size-title-5);
   font-weight: bold;
   color: var(--color-dark);
 }

@@ -13,3 +13,8 @@ export type Movimiento = {
   fecha: string;
   monto: number;
 };
+
+export type DescargaCuenta = Movimiento & {
+  entidadDestino: string;
+  cuentaDestino: string;
+};

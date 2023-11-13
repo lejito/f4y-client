@@ -1,0 +1,52 @@
+<div class="dialog-container">
+  <div class="dialog" @fadeIn>
+    <div class="dialog__header">
+      <h4 class="dialog__title">¡Transferencia satisfactoria!</h4>
+      <button class="dialog__button-close" (click)="cerrar()">
+        <i class="fa-solid fa-xmark fa-2xl"></i>
+      </button>
+    </div>
+
+    <div class="dialog__content">
+      <h5 class="dialog__subtitle">Descarga desde cuenta</h5>
+      <div class="dialog__detail">
+        <i class="dialog__detail__icon fa-solid fa-hashtag"></i>
+        <span class="dialog__detail__title">ID movimiento:</span>
+        <span class="dialog__detail__info">{{ movimiento.id }}</span>
+      </div>
+      <div class="dialog__detail">
+        <i class="dialog__detail__icon fa-solid fa-clock"></i>
+        <span class="dialog__detail__title">Fecha/hora:</span>
+        <span class="dialog__detail__info">{{
+          utilsService.convertirFecha(movimiento.fecha)
+        }}</span>
+      </div>
+      <div class="dialog__detail">
+        <i class="dialog__detail__icon fa-solid fa-building-columns"></i>
+        <span class="dialog__detail__title">Entidad destino:</span>
+        <span class="dialog__detail__info">{{
+          movimiento.entidadDestino
+        }}</span>
+      </div>
+      <div class="dialog__detail">
+        <i class="dialog__detail__icon fa-solid fa-money-check-dollar"></i>
+        <span class="dialog__detail__title">Cuenta destino:</span>
+        <span class="dialog__detail__info">{{ movimiento.cuentaDestino }}</span>
+      </div>
+
+      <div class="dialog__detail">
+        <i class="dialog__detail__icon fa-solid fa-money-bill"></i>
+        <span class="dialog__detail__title">Monto:</span>
+        <span class="dialog__detail__info">{{
+          utilsService.convertirCOP(movimiento.monto)
+        }}</span>
+      </div>
+    </div>
+
+    <div class="dialog__footer">
+      <button class="dialog__footer__button" (click)="cerrar()">
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>

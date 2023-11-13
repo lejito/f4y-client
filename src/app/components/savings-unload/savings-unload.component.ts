@@ -7,6 +7,8 @@ import {
   transition,
 } from '@angular/animations';
 import { UtilsService } from 'src/app/services/utils.service';
+import { MovimientosService } from 'src/app/services/movimientos.service';
+import { DescargaCuenta } from 'src/types/Movimiento';
 
 @Component({
   selector: 'app-savings-unload',
@@ -23,9 +25,13 @@ import { UtilsService } from 'src/app/services/utils.service';
   ],
 })
 export class SavingsUnloadComponent {
-  constructor(private utilsService: UtilsService) {}
+  constructor(
+    private utilsService: UtilsService,
+    private movimientosService: MovimientosService
+  ) {}
 
   @Output() closeDialog = new EventEmitter();
+  @Output() unloadConfirmed = new EventEmitter<DescargaCuenta>();
 
   public patronMonto = this.utilsService.patronMonto;
 
@@ -47,7 +53,25 @@ export class SavingsUnloadComponent {
   public async descargar() {
     this.formularioEnviado = true;
     if (this.verificarCampos()) {
-      //Here
+      this.utilsService.isLoading = true;
+      const movimiento = await this.movimientosService.descargarCuenta(
+        'quyne',
+        this.formulario.cuenta,
+        parseFloat(this.formulario.monto)
+      );
+
+      if (movimiento) {
+        this.unloadConfirmed.emit({
+          id: movimiento.id,
+          tipo: movimiento.tipo,
+          entidadDestino: 'Quyne',
+          cuentaDestino: this.formulario.cuenta,
+          monto: movimiento.monto,
+          fecha: movimiento.fecha,
+        });
+        this.cerrar();
+      }
+      this.utilsService.isLoading = false;
     }
   }
 

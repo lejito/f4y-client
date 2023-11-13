@@ -6,8 +6,15 @@
 
 <app-savings-unload
   *ngIf="dialogoDescarga"
+  (unloadConfirmed)="abrirDialogoConfirmacionDescarga($event)"
   (closeDialog)="cerrarDialogoDescarga()"
 ></app-savings-unload>
+
+<app-savings-unload-success
+  *ngIf="dialogoConfirmacionDescarga"
+  [movimiento]="descarga"
+  (closeDialog)="cerrarDialogoConfirmacionDescarga()"
+></app-savings-unload-success>
 
 <div class="page">
   <div class="savings__left">
@@ -20,7 +27,7 @@
         <div class="account__card__balance">
           <span class="account__card__amount">
             <span *ngIf="!saldoOculto; else saldoOcultado">{{
-              saldo ? utilsService.convertirCOP(saldo) : "..."
+              saldo !== null ? utilsService.convertirCOP(saldo) : "..."
             }}</span>
             <ng-template #saldoOcultado>$ *********</ng-template>
           </span>

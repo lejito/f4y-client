@@ -1,0 +1,23 @@
+.dialog-container {
+  background-color: var(--color-tertiary-bg);
+}
+
+.dialog__content {
+  padding: 60px 80px;
+}
+
+.dialog__detail {
+  display: flex;
+  flex-direction: row;
+  font-size: var(--font-size-text-big);
+}
+
+.dialog__detail__icon {
+  align-items: center;
+  margin-right: 6px;
+}
+
+.dialog__detail__title {
+  font-weight: bold;
+  margin-right: 8px;
+}

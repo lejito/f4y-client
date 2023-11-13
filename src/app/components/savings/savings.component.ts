@@ -1,7 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TipoMovimiento, Movimiento } from '../../../types/Movimiento';
+import {
+  TipoMovimiento,
+  Movimiento,
+  DescargaCuenta,
+} from '../../../types/Movimiento';
 import { UtilsService } from 'src/app/services/utils.service';
 import { CuentasService } from 'src/app/services/cuentas.service';
 import { MovimientosService } from 'src/app/services/movimientos.service';
@@ -39,6 +43,8 @@ export class SavingsComponent implements OnInit, OnDestroy {
   public dialogoCarga = false;
   public cuentaCarga = '';
   public dialogoDescarga = false;
+  public descarga!: DescargaCuenta;
+  public dialogoConfirmacionDescarga = false;
 
   ngOnInit(): void {
     this.cargarDatos();
@@ -88,6 +94,11 @@ export class SavingsComponent implements OnInit, OnDestroy {
     this.dialogoDescarga = false;
   }
 
+  public async cerrarDialogoConfirmacionDescarga(): Promise<void> {
+    await this.cargarDatos();
+    this.dialogoConfirmacionDescarga = false;
+  }
+
   public async abrirDialogoCarga(): Promise<void> {
     this.utilsService.isLoading = true;
     const identificacion = await this.cuentasService.obtenerIdentificacion();
@@ -99,7 +110,12 @@ export class SavingsComponent implements OnInit, OnDestroy {
     this.utilsService.isLoading = false;
   }
 
-  public async abrirDialogoDescarga(): Promise<void> {
+  public abrirDialogoDescarga(): void {
     this.dialogoDescarga = true;
+  }
+
+  public abrirDialogoConfirmacionDescarga(movimiento: DescargaCuenta): void {
+    this.descarga = movimiento;
+    this.dialogoConfirmacionDescarga = true;
   }
 }
