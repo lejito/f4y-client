@@ -14,6 +14,7 @@ import { SettingsBirthdayComponent } from './components/settings-birthday/settin
 import { SettingsEmailComponent } from './components/settings-email/settings-email.component';
 import { SettingsPasswordComponent } from './components/settings-password/settings-password.component';
 import { SavingsComponent } from './components/savings/savings.component';
+import { PocketsComponent } from './components/pockets/pockets.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -39,6 +40,10 @@ const routes: Routes = [
       {
         path: 'savings',
         component: SavingsComponent,
+      },
+      {
+        path: 'pockets',
+        component: PocketsComponent,
       },
     ],
     canActivate: [AuthGuard],

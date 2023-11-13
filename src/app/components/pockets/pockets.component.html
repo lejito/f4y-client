@@ -1,0 +1,63 @@
+<app-pockets-add *ngIf="dialogoCrear" (closeDialog)="cerrarDialogoCrear()"></app-pockets-add>
+
+<div class="page">
+  <div class="pockets">
+    <div class="pockets__item" *ngFor="let bolsillo of bolsillos">
+      <div class="pockets__item__header">
+        <i class="pockets__item__icon fa-solid fa-wallet fa-xl"></i>
+        <h5 class="pockets__item__name">{{ bolsillo.nombre }}</h5>
+      </div>
+      <span class="pockets__item__amount">
+        {{ utilsService.convertirCOP(bolsillo.saldo) }}
+        {{
+          bolsillo.saldoObjetivo
+            ? "/ " + utilsService.convertirCOP(bolsillo.saldoObjetivo)
+            : null
+        }}
+      </span>
+      <div class="pockets__item__progress">
+        <div
+          class="pockets__item__progress__bar"
+          [style.width.%]="
+            bolsillo.saldoObjetivo
+              ? (bolsillo.saldo / bolsillo.saldoObjetivo) * 100
+              : 100
+          "
+        ></div>
+      </div>
+      <div class="pockets__item__options">
+        <div class="pockets__item__options__button">
+          <i
+            class="pockets__item__options__button__icon fa-solid fa-clock-rotate-left"
+          ></i>
+          <span class="pockets__item__options__button__text">Historial</span>
+        </div>
+        <div class="pockets__item__options__button">
+          <i
+            class="pockets__item__options__button__icon fa-solid fa-arrow-right-arrow-left"
+          ></i>
+          <span class="pockets__item__options__button__text">Transferir</span>
+        </div>
+        <div class="pockets__item__options__button">
+          <i
+            class="pockets__item__options__button__icon fa-solid fa-pencil"
+          ></i>
+          <span class="pockets__item__options__button__text">Editar</span>
+        </div>
+        <div class="pockets__item__options__button">
+          <i
+            class="pockets__item__options__button__icon fa-solid fa-trash-can"
+          ></i>
+          <span class="pockets__item__options__button__text">Eliminar</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pockets__item pockets__item__add" (click)="abrirDialogoCrear()">
+      <div class="pockets__item__add__button">
+        <i class="pockets__item__add__icon fa-solid fa-plus fa-2xl"></i>
+        <span class="pockets__item__add__text">Crear bolsillo</span>
+      </div>
+    </div>
+  </div>
+</div>

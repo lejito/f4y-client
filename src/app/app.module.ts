@@ -22,6 +22,8 @@ import { SettingsPasswordComponent } from './components/settings-password/settin
 import { SavingsLoadComponent } from './components/savings-load/savings-load.component';
 import { SavingsUnloadComponent } from './components/savings-unload/savings-unload.component';
 import { SavingsUnloadSuccessComponent } from './components/savings-unload-success/savings-unload-success.component';
+import { PocketsComponent } from './components/pockets/pockets.component';
+import { PocketsAddComponent } from './components/pockets-add/pockets-add.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { SavingsUnloadSuccessComponent } from './components/savings-unload-succe
     SavingsLoadComponent,
     SavingsUnloadComponent,
     SavingsUnloadSuccessComponent,
+    PocketsComponent,
+    PocketsAddComponent,
   ],
   imports: [
     BrowserModule,

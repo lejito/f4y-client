@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { UtilsService } from './services/utils.service';
 import { Subscription } from 'rxjs';
 
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  constructor(private utilsService: UtilsService) {}
+  constructor(private utilsService: UtilsService, private cd: ChangeDetectorRef) {}
 
   public title = 'F4Y';
   public isLoading = true;
@@ -17,6 +17,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.utilsService.isLoading.subscribe((isLoading) => {
       this.isLoading = isLoading;
+      this.cd.detectChanges();
     });
   }
 
