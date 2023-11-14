@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { TipoMovimiento } from '../../types/Movimiento';
 import * as moment from 'moment';
+import { EstadoCDT } from 'src/types/CDT';
 
 @Injectable({ providedIn: 'root' })
 export class UtilsService {
@@ -97,5 +98,17 @@ export class UtilsService {
     };
 
     return tiposMovimiento[tipoMovimiento] || 'Movimiento';
+  }
+
+  public obtenerNombreEstadoCDT(estadoCDT: EstadoCDT): string {
+    const estadosCDT = {
+      'apertura': 'Apertura',
+      'en-curso': 'En curso',
+      'finalizado': 'Finalizado',
+      'liquidado': 'Liquidado',
+      'cancelado': 'Cancelado',
+    };
+
+    return estadosCDT[estadoCDT] || 'EstadoCDT';
   }
 }

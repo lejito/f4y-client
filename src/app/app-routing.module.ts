@@ -15,6 +15,7 @@ import { SettingsEmailComponent } from './components/settings-email/settings-ema
 import { SettingsPasswordComponent } from './components/settings-password/settings-password.component';
 import { SavingsComponent } from './components/savings/savings.component';
 import { PocketsComponent } from './components/pockets/pockets.component';
+import { InvestmentsComponent } from './components/investments/investments.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -45,6 +46,10 @@ const routes: Routes = [
         path: 'pockets',
         component: PocketsComponent,
       },
+      {
+        path: 'investments',
+        component: InvestmentsComponent
+      }
     ],
     canActivate: [AuthGuard],
   },

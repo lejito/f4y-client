@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Bolsillo } from 'src/types/Bolsillo';
 import { TransferenciaBolsillo } from 'src/types/Movimiento';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -12,10 +13,13 @@ import { BolsillosService } from 'src/app/services/bolsillos.service';
 })
 export class PocketsComponent implements OnInit {
   constructor(
+    private title: Title,
     public utilsService: UtilsService,
     private alertService: AlertsService,
     private bolsillosService: BolsillosService
-  ) {}
+  ) {
+    this.title.setTitle('Fin4Youth: Bolsillos');
+  }
 
   public bolsillos: Bolsillo[] = [];
   public dialogoCrear = false;

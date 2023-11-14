@@ -1,0 +1,38 @@
+<div class="page">
+  <div class="page__header">
+    <h3 class="page__title">Tus inversiones</h3>
+
+    <button class="page__button">
+      <i class="page__button__icon fa-solid fa-file-invoice-dollar"></i>
+
+      <span class="page__button__text">Abrir CDT</span>
+    </button>
+  </div>
+
+  <div class="cdts">
+    <div class="cdts__cdt" *ngFor="let cdt of cdts">
+      <div class="cdt__header">
+        <i class="cdt__icon fa-solid fa-receipt fa-2xl"></i>
+        <h5 class="cdt__title">CDT #{{ cdt.id }}</h5>
+      </div>
+
+      <div class="cdt__info">
+        <span class="cdt__amount"
+          >Inversión:
+          <span class="cdt__amount__value">{{
+            utilsService.convertirCOP(cdt.inversion)
+          }}</span></span
+        >
+      </div>
+
+      <div class="cdt__footer">
+        <span class="cdt__status"
+          >Estado:
+          <div class="cdt__status__badge">
+            {{ utilsService.obtenerNombreEstadoCDT(cdt.estado) }}
+          </div></span
+        >
+      </div>
+    </div>
+  </div>
+</div>
