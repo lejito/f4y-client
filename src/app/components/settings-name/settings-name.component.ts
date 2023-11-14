@@ -28,7 +28,14 @@ export class SettingsNameComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     const nombre = await this.cuentasService.obtenerNombre();
     if (!!nombre) {
-      this.formulario = nombre;
+      this.formulario.primerNombre = nombre.primerNombre;
+      this.formulario.segundoNombre = nombre.segundoNombre
+        ? nombre.segundoNombre
+        : '';
+      this.formulario.primerApellido = nombre.primerApellido;
+      this.formulario.segundoApellido = nombre.segundoApellido
+        ? nombre.segundoApellido
+        : '';
     }
     this.datosCargados = true;
   }
