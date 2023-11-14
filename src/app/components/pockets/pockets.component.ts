@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UtilsService } from 'src/app/services/utils.service';
 import { Bolsillo } from 'src/types/Bolsillo';
+import { UtilsService } from 'src/app/services/utils.service';
+import { AlertsService } from 'src/app/services/alerts.service';
 import { BolsillosService } from 'src/app/services/bolsillos.service';
 
 @Component({
@@ -11,11 +12,15 @@ import { BolsillosService } from 'src/app/services/bolsillos.service';
 export class PocketsComponent implements OnInit {
   constructor(
     public utilsService: UtilsService,
+    private alertService: AlertsService,
     private bolsillosService: BolsillosService
   ) {}
 
   public bolsillos: Bolsillo[] = [];
   public dialogoCrear = false;
+  public dialogoActualizar = false;
+  public dialogoHistorial = false;
+  public bolsilloActual: Bolsillo | null = null;
 
   async ngOnInit(): Promise<void> {
     await this.cargarDatos();
@@ -40,5 +45,38 @@ export class PocketsComponent implements OnInit {
 
   public cerrarDialogoCrear(): void {
     this.dialogoCrear = false;
+  }
+
+  public abrirDialogoActualizar(bolsillo: Bolsillo): void {
+    this.bolsilloActual = bolsillo;
+    this.dialogoActualizar = true;
+  }
+
+  public cerrarDialogoActualizar(): void {
+    this.dialogoActualizar = false;
+  }
+
+  public abrirDialogoHistorial(bolsillo: Bolsillo): void {
+    this.bolsilloActual = bolsillo;
+    this.dialogoHistorial = true;
+  }
+
+  public cerrarDialogoHistorial(): void {
+    this.dialogoHistorial = false;
+  }
+
+  public async eliminarBolsillo(id: number): Promise<void> {
+    this.alertService
+      .confirm('¿Estás segur@ de que deseas borrar este bolsillo?')
+      .then(async (confirmacion) => {
+        if (confirmacion) {
+          this.utilsService.isLoading = true;
+          const bolsilloEliminado = await this.bolsillosService.eliminar(id);
+          this.utilsService.isLoading = false;
+          if (bolsilloEliminado) {
+            this.cargarDatos();
+          }
+        }
+      });
   }
 }

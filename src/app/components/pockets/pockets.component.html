@@ -1,4 +1,21 @@
-<app-pockets-add *ngIf="dialogoCrear" (closeDialog)="cerrarDialogoCrear()"></app-pockets-add>
+<app-pockets-record
+  *ngIf="dialogoHistorial"
+  [bolsillo]="bolsilloActual"
+  (closeDialog)="cerrarDialogoHistorial()"
+></app-pockets-record>
+
+<app-pockets-add
+  *ngIf="dialogoCrear"
+  (closeDialog)="cerrarDialogoCrear()"
+  (createConfirmed)="cargarDatos()"
+></app-pockets-add>
+
+<app-pockets-edit
+  *ngIf="dialogoActualizar"
+  [bolsillo]="bolsilloActual"
+  (closeDialog)="cerrarDialogoActualizar()"
+  (editConfirmed)="cargarDatos()"
+></app-pockets-edit>
 
 <div class="page">
   <div class="pockets">
@@ -26,7 +43,10 @@
         ></div>
       </div>
       <div class="pockets__item__options">
-        <div class="pockets__item__options__button">
+        <div
+          class="pockets__item__options__button"
+          (click)="abrirDialogoHistorial(bolsillo)"
+        >
           <i
             class="pockets__item__options__button__icon fa-solid fa-clock-rotate-left"
           ></i>
@@ -38,13 +58,19 @@
           ></i>
           <span class="pockets__item__options__button__text">Transferir</span>
         </div>
-        <div class="pockets__item__options__button">
+        <div
+          class="pockets__item__options__button"
+          (click)="abrirDialogoActualizar(bolsillo)"
+        >
           <i
             class="pockets__item__options__button__icon fa-solid fa-pencil"
           ></i>
           <span class="pockets__item__options__button__text">Editar</span>
         </div>
-        <div class="pockets__item__options__button">
+        <div
+          class="pockets__item__options__button"
+          (click)="eliminarBolsillo(bolsillo.id)"
+        >
           <i
             class="pockets__item__options__button__icon fa-solid fa-trash-can"
           ></i>

@@ -1,0 +1,93 @@
+<div class="dialog-container">
+  <div class="dialog" @fadeIn>
+    <div class="dialog__header">
+      <h4 class="dialog__title">Editar bolsillo</h4>
+      <button class="dialog__button-close" (click)="cerrar()">
+        <i class="fa-solid fa-xmark fa-2xl"></i>
+      </button>
+    </div>
+
+    <div class="dialog__content">
+      <form class="form" (ngSubmit)="actualizar()">
+        <div class="form__column">
+          <div class="form__group">
+            <label class="form__label" for="nombre">Nombre</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              class="form__input"
+              placeholder="Ingresa un nombre descriptivo"
+              [(ngModel)]="formulario.nombre"
+            />
+            <span
+              class="form__invalid-text"
+              *ngIf="formularioEnviado && !formulario.nombre"
+            >
+              El nombre es requerido.
+            </span>
+            <span
+              class="form__invalid-text"
+              *ngIf="formularioEnviado && formulario.nombre.length > 20"
+            >
+              El nombre debe ser menor a 20 caracteres.
+            </span>
+          </div>
+
+          <div class="form__group">
+            <label class="form__label" for="saldoObjetivo"
+              >Saldo objetivo o meta</label
+            >
+            <input
+              type="number"
+              id="saldoObjetivo"
+              name="saldoObjetivo"
+              class="form__input"
+              min="5000"
+              placeholder="¿Cuál es la meta que deseas alcanzar?"
+              [(ngModel)]="formulario.saldoObjetivo"
+              [disabled]="formulario.saldoOjetivoNulo"
+            />
+            <label for="saldoObjetivoNulo" class="form__check"
+            ><input
+              type="checkbox"
+              id="saldoObjetivoNulo"
+              name="saldoObjetivoNulo"
+              [(ngModel)]="formulario.saldoOjetivoNulo"
+            />
+            No deseo especificar la meta.</label
+          >
+            <span
+              class="form__invalid-text"
+              *ngIf="formularioEnviado && !formulario.saldoOjetivoNulo && !formulario.saldoObjetivo"
+            >
+              La meta es requerida.
+            </span>
+            <span
+              class="form__invalid-text"
+              *ngIf="
+                formularioEnviado &&  !formulario.saldoOjetivoNulo && !patronMonto.test(formulario.saldoObjetivo)
+              "
+            >
+              La meta debe ser un número válido mayor a 5000.
+            </span>
+          </div>
+
+          <button
+            class="form__button"
+            type="submit"
+            [disabled]="formularioEnviado && !verificarCampos()"
+          >
+            Editar bolsillo
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="dialog__footer">
+      <button class="dialog__footer__button" (click)="cerrar()">
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>

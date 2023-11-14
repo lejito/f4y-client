@@ -74,7 +74,7 @@ export class UtilsService {
   }
 
   public convertirFecha(fecha: string): string {
-    const timestamp = moment(fecha).utcOffset(-10).format('yyyy/MM/DD hh:mm:ss A');
+    const timestamp = moment(fecha).format('yyyy/MM/DD hh:mm:ss A');
 
     return new Date(timestamp).toLocaleString('es-CO', {
       day: '2-digit',

@@ -24,6 +24,8 @@ import { SavingsUnloadComponent } from './components/savings-unload/savings-unlo
 import { SavingsUnloadSuccessComponent } from './components/savings-unload-success/savings-unload-success.component';
 import { PocketsComponent } from './components/pockets/pockets.component';
 import { PocketsAddComponent } from './components/pockets-add/pockets-add.component';
+import { PocketsEditComponent } from './components/pockets-edit/pockets-edit.component';
+import { PocketsRecordComponent } from './components/pockets-record/pockets-record.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { PocketsAddComponent } from './components/pockets-add/pockets-add.compon
     SavingsUnloadSuccessComponent,
     PocketsComponent,
     PocketsAddComponent,
+    PocketsEditComponent,
+    PocketsRecordComponent,
   ],
   imports: [
     BrowserModule,
