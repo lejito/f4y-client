@@ -1,0 +1,45 @@
+.pockets__records {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pockets__records__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 100px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--color-light-gray);
+}
+
+.pockets__records__item__info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pockets__records__item__type {
+  font-size: var(--font-size-text-big);
+  font-weight: bold;
+}
+
+.pockets__records__item__date {
+  font-size: var(--font-size-text-normal);
+  color: var(--color-gray);
+}
+
+.pockets__records__item__amount {
+  font-size: var(--font-size-text-big);
+  font-weight: bold;
+}
+
+.pockets__records__item--load .pockets__records__item__amount {
+  color: var(--color-success);
+}
+
+.pockets__records__item--unload .pockets__records__item__amount {
+  color: var(--color-danger);
+}

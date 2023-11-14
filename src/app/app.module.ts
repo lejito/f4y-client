@@ -26,6 +26,8 @@ import { PocketsComponent } from './components/pockets/pockets.component';
 import { PocketsAddComponent } from './components/pockets-add/pockets-add.component';
 import { PocketsEditComponent } from './components/pockets-edit/pockets-edit.component';
 import { PocketsRecordComponent } from './components/pockets-record/pockets-record.component';
+import { PocketsTransferComponent } from './components/pockets-transfer/pockets-transfer.component';
+import { PocketsTransferSuccessComponent } from './components/pockets-transfer-success/pockets-transfer-success.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { PocketsRecordComponent } from './components/pockets-record/pockets-reco
     PocketsAddComponent,
     PocketsEditComponent,
     PocketsRecordComponent,
+    PocketsTransferComponent,
+    PocketsTransferSuccessComponent,
   ],
   imports: [
     BrowserModule,

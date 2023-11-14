@@ -18,3 +18,7 @@ export type DescargaCuenta = Movimiento & {
   entidadDestino: string;
   cuentaDestino: string;
 };
+
+export type TransferenciaBolsillo = Movimiento & {
+  nombreBolsillo: string;
+};

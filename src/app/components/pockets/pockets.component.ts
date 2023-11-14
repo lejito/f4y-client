@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Bolsillo } from 'src/types/Bolsillo';
+import { TransferenciaBolsillo } from 'src/types/Movimiento';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { BolsillosService } from 'src/app/services/bolsillos.service';
@@ -20,6 +21,9 @@ export class PocketsComponent implements OnInit {
   public dialogoCrear = false;
   public dialogoActualizar = false;
   public dialogoHistorial = false;
+  public dialogoTransferir = false;
+  public dialogoConfirmacionTransferencia = false;
+  public transferencia: TransferenciaBolsillo | null = null;
   public bolsilloActual: Bolsillo | null = null;
 
   async ngOnInit(): Promise<void> {
@@ -65,6 +69,27 @@ export class PocketsComponent implements OnInit {
     this.dialogoHistorial = false;
   }
 
+  public abrirDialogoTransferir(bolsillo: Bolsillo): void {
+    this.bolsilloActual = bolsillo;
+    this.dialogoTransferir = true;
+  }
+
+  public cerrarDialogoTransferir(): void {
+    this.dialogoTransferir = false;
+  }
+
+  public abrirDialogoConfirmacionTransferencia(
+    transferencia: TransferenciaBolsillo
+  ): void {
+    this.transferencia = transferencia;
+    this.dialogoConfirmacionTransferencia = true;
+  }
+
+  public async cerrarDialogoConfirmacionTransferencia(): Promise<void> {
+    this.dialogoConfirmacionTransferencia = false;
+    await this.cargarDatos();
+  }
+
   public async eliminarBolsillo(id: number): Promise<void> {
     this.alertService
       .confirm('¿Estás segur@ de que deseas borrar este bolsillo?')
@@ -74,7 +99,7 @@ export class PocketsComponent implements OnInit {
           const bolsilloEliminado = await this.bolsillosService.eliminar(id);
           this.utilsService.isLoading = false;
           if (bolsilloEliminado) {
-            this.cargarDatos();
+            await this.cargarDatos();
           }
         }
       });

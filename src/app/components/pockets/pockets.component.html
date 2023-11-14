@@ -4,6 +4,19 @@
   (closeDialog)="cerrarDialogoHistorial()"
 ></app-pockets-record>
 
+<app-pockets-transfer
+  *ngIf="dialogoTransferir"
+  [bolsillo]="bolsilloActual"
+  (closeDialog)="cerrarDialogoTransferir()"
+  (transferConfirmed)="abrirDialogoConfirmacionTransferencia($event)"
+></app-pockets-transfer>
+
+<app-pockets-transfer-success
+  *ngIf="dialogoConfirmacionTransferencia"
+  [movimiento]="transferencia"
+  (closeDialog)="cerrarDialogoConfirmacionTransferencia()"
+></app-pockets-transfer-success>
+
 <app-pockets-add
   *ngIf="dialogoCrear"
   (closeDialog)="cerrarDialogoCrear()"
@@ -37,8 +50,10 @@
           class="pockets__item__progress__bar"
           [style.width.%]="
             bolsillo.saldoObjetivo
-              ? (bolsillo.saldo / bolsillo.saldoObjetivo) * 100
-              : 100
+              ? (bolsillo.saldo / bolsillo.saldoObjetivo) * 100 < 100
+                ? (bolsillo.saldo / bolsillo.saldoObjetivo) * 100
+                : 100
+              : 0
           "
         ></div>
       </div>
@@ -52,7 +67,10 @@
           ></i>
           <span class="pockets__item__options__button__text">Historial</span>
         </div>
-        <div class="pockets__item__options__button">
+        <div
+          class="pockets__item__options__button"
+          (click)="abrirDialogoTransferir(bolsillo)"
+        >
           <i
             class="pockets__item__options__button__icon fa-solid fa-arrow-right-arrow-left"
           ></i>

@@ -7,7 +7,31 @@
       </button>
     </div>
 
-    <div class="dialog__content">Hola</div>
+    <div class="dialog__content">
+      <div class="pockets__records">
+        <div
+          class="pockets__records__item"
+          [ngClass]="{
+            'pockets__records__item--load': movimiento.tipo == 'carga-bolsillo',
+            'pockets__records__item--unload':
+              movimiento.tipo == 'descarga-bolsillo'
+          }"
+          *ngFor="let movimiento of movimientos"
+        >
+          <div class="pockets__records__item__info">
+            <span class="pockets__records__item__type">
+              {{ utilsService.obtenerNombreTipoMovimiento(movimiento.tipo) }}
+            </span>
+            <span class="pockets__records__item__date">
+              {{ utilsService.convertirFecha(movimiento.fecha) }}
+            </span>
+          </div>
+          <span class="pockets__records__item__amount">
+            {{ utilsService.convertirCOP(movimiento.monto) }}
+          </span>
+        </div>
+      </div>
+    </div>
 
     <div class="dialog__footer">
       <button class="dialog__footer__button" (click)="cerrar()">

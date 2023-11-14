@@ -1,0 +1,99 @@
+<div class="dialog-container">
+  <div class="dialog" @fadeIn>
+    <div class="dialog__header">
+      <h4 class="dialog__title">Transferir: {{ bolsillo?.nombre }}</h4>
+      <button class="dialog__button-close" (click)="cerrar()">
+        <i class="fa-solid fa-xmark fa-2xl"></i>
+      </button>
+    </div>
+
+    <div class="dialog__content">
+      <form class="form" (ngSubmit)="transferir()">
+        <div class="form__column">
+          <div class="form__group">
+            <label class="form__label" for="tipo">Tipo de transferencia</label>
+            <select
+              id="tipo"
+              name="tipo"
+              class="form__select"
+              [(ngModel)]="formulario.tipo"
+            >
+              <option value="" class="form__option">
+                Seleccionar tipo de transferencia
+              </option>
+              <option value="carga" class="form-option">
+                Carga desde cuenta hacia bolsillo
+              </option>
+              <option value="descarga" class="form-option">
+                Descarga desde bolsillo hacia cuenta
+              </option>
+            </select>
+            <span
+              class="form__invalid-text"
+              *ngIf="formularioEnviado && !formulario.tipo"
+            >
+              El tipo de transferencia es requerido.
+            </span>
+          </div>
+
+          <div class="form__group">
+            <label class="form__label" for="monto">Monto</label>
+            <input
+              type="number"
+              id="monto"
+              name="monto"
+              class="form__input"
+              min="5000"
+              placeholder="¿Cuál es la meta que deseas alcanzar?"
+              [(ngModel)]="formulario.monto"
+              [disabled]="formulario.transferirTodo"
+            />
+            <label
+              for="transferirTodo"
+              class="form__check"
+              *ngIf="formulario.tipo == 'descarga'"
+              ><input
+                type="checkbox"
+                id="transferirTodo"
+                name="transferirTodo"
+                [(ngModel)]="formulario.transferirTodo"
+                (ngModelChange)="descargarSaldoTotal()"
+              />
+              Descargar el saldo total del bolsillo.</label
+            >
+            <span
+              class="form__invalid-text"
+              *ngIf="formularioEnviado && !formulario.monto"
+            >
+              EL monto es requerido.
+            </span>
+            <span
+              class="form__invalid-text"
+              *ngIf="
+                formularioEnviado &&
+                !formulario.transferirTodo &&
+                !patronMonto.test(formulario.monto)
+              "
+            >
+              El monto debe ser un número válido mayor a 5000.
+            </span>
+          </div>
+
+          <button
+            class="form__button"
+            type="submit"
+            [disabled]="formularioEnviado && !verificarCampos()"
+          >
+            Transferir
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="dialog__footer">
+      <button class="dialog__footer__button" (click)="cerrar()">
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>

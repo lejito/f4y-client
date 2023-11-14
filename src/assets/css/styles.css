@@ -424,7 +424,7 @@ p {
   align-items: center;
   gap: 30px;
   padding: 32px;
-  overflow-x: auto  ;
+  overflow-x: auto;
 }
 
 .dialog__content p {
@@ -466,4 +466,28 @@ p {
 
 .dialog__footer__button:hover {
   background-color: var(--color-danger-hover);
+}
+
+.dialog-container--success {
+  background-color: var(--color-tertiary-bg);
+}
+
+.dialog--success .dialog__content {
+  padding: 60px 80px;
+}
+
+.dialog--success .dialog__detail {
+  display: flex;
+  flex-direction: row;
+  font-size: var(--font-size-text-big);
+}
+
+.dialog--success .dialog__detail__icon {
+  align-items: center;
+  margin-right: 6px;
+}
+
+.dialog--success .dialog__detail__title {
+  font-weight: bold;
+  margin-right: 8px;
 }

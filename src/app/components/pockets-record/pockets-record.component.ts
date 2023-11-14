@@ -27,7 +27,7 @@ import { Movimiento } from 'src/types/Movimiento';
 })
 export class PocketsRecordComponent {
   constructor(
-    private utilsService: UtilsService,
+    public utilsService: UtilsService,
     private bolsillosService: BolsillosService
   ) {}
 
