@@ -3,7 +3,6 @@
     <div class="navbar__left">
       <h5 class="navbar__title" *ngIf="rutaActual == ''; else anyRute">
         ¡Hola de nuevo{{ nombre ? ", " + nombre.primerNombre + "!" : "!" }}
-        {{ rutaActual }}
       </h5>
       <ng-template #anyRute>
         <button class="back__button" routerLink="/panel">
@@ -22,7 +21,13 @@
 
     <div class="navbar__right">
       <div class="navbar__settings">
-        <a class="navbar__settings__link" routerLink="settings" [ngClass]="{'navbar__settings__link--active': rutaActual.startsWith('/settings')}">
+        <a
+          class="navbar__settings__link"
+          routerLink="settings"
+          [ngClass]="{
+            'navbar__settings__link--active': rutaActual.startsWith('/settings')
+          }"
+        >
           <i class="navbar__settings__icon fa-solid fa-user-gear fa-xl"></i>
           <span class="navbar__settings__text">Actualizar datos</span>
         </a>

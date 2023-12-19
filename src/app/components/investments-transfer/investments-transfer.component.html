@@ -1,0 +1,45 @@
+<div class="dialog-container dialog-container--success">
+  <div class="dialog dialog--success" @fadeIn>
+    <div class="dialog__header">
+      <h4 class="dialog__title">¡Transferencia satisfactoria!</h4>
+      <button class="dialog__button-close" (click)="cerrar()">
+        <i class="fa-solid fa-xmark fa-2xl"></i>
+      </button>
+    </div>
+
+    <div class="dialog__content">
+      <h5 class="dialog__subtitle">
+        {{
+          movimiento
+            ? utilsService.obtenerNombreTipoMovimiento(movimiento.tipo)
+            : null
+        }}
+      </h5>
+      <div class="dialog__detail">
+        <i class="dialog__detail__icon fa-solid fa-hashtag"></i>
+        <span class="dialog__detail__title">ID movimiento:</span>
+        <span class="dialog__detail__info">{{ movimiento?.id }}</span>
+      </div>
+      <div class="dialog__detail">
+        <i class="dialog__detail__icon fa-solid fa-clock"></i>
+        <span class="dialog__detail__title">Fecha/hora:</span>
+        <span class="dialog__detail__info">{{
+          movimiento ? utilsService.convertirFecha(movimiento.fecha) : null
+        }}</span>
+      </div>
+      <div class="dialog__detail">
+        <i class="dialog__detail__icon fa-solid fa-money-bill"></i>
+        <span class="dialog__detail__title">Monto:</span>
+        <span class="dialog__detail__info">{{
+          movimiento ? utilsService.convertirCOP(movimiento.monto) : null
+        }}</span>
+      </div>
+    </div>
+
+    <div class="dialog__footer">
+      <button class="dialog__footer__button" (click)="cerrar()">
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>

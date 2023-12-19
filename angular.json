@@ -26,7 +26,7 @@
             "scripts": [
               "node_modules/@fortawesome/fontawesome-free/js/all.min.js"
             ],
-            "allowedCommonJsDependencies": ["sweetalert2"]
+            "allowedCommonJsDependencies": ["sweetalert2", "moment"]
           },
           "configurations": {
             "production": {

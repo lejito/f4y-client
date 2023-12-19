@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd, Event } from '@angular/router';
 import { Subscription, interval } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { UtilsService } from 'src/app/services/utils.service';
 import { CuentasService } from 'src/app/services/cuentas.service';
 import { NombreCompleto } from 'src/types/Cuenta';
 
@@ -11,20 +10,13 @@ import { NombreCompleto } from 'src/types/Cuenta';
   styleUrls: ['./panel.component.css'],
 })
 export class PanelComponent implements OnInit, OnDestroy {
-  constructor(private router: Router, private cuentasService: CuentasService) {
-    this.router.events
-      .pipe(
-        filter(
-          (event: Event): event is NavigationEnd =>
-            event instanceof NavigationEnd
-        )
-      )
-      .subscribe((event: NavigationEnd) => {
-        this.rutaActual = event.url.replace('/panel', '');
-      });
-  }
+  constructor(
+    private utilsService: UtilsService,
+    private cuentasService: CuentasService
+  ) {}
 
   public rutaActual = '';
+  public subsRuta = new Subscription();
   public nombre: NombreCompleto | null = null;
   public fechaTexto: string | null = null;
   public horaTexto: string | null = null;
@@ -32,6 +24,10 @@ export class PanelComponent implements OnInit, OnDestroy {
   private subsSesion = new Subscription();
 
   async ngOnInit(): Promise<void> {
+    this.subsRuta = this.utilsService.obtenerRutaActual().subscribe((ruta) => {
+      this.rutaActual = ruta.replace('/panel', '');
+    });
+
     this.nombre = await this.obtenerNombre();
 
     this.subsFecha = interval(1000).subscribe(() => {
@@ -45,6 +41,7 @@ export class PanelComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.subsRuta.unsubscribe();
     this.subsFecha.unsubscribe();
     this.subsSesion.unsubscribe();
   }

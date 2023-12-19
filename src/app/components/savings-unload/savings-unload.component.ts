@@ -45,7 +45,7 @@ export class SavingsUnloadComponent {
     return (
       !!this.formulario.cuenta &&
       this.formulario.cuenta.length <= 10 &&
-      !!this.patronMonto &&
+      !!this.formulario.monto &&
       this.patronMonto.test(this.formulario.monto)
     );
   }

@@ -1,0 +1,42 @@
+<div class="cdts">
+  <label for="filtrar" class="form__check cdts__filter"
+    ><input
+      type="checkbox"
+      id="filtrar"
+      name="filtrar"
+      [(ngModel)]="filtrado"
+      (click)="filtradoCDTs()"
+    />
+    <span>Ocultar CDTs liquidados y cancelados</span>
+  </label>
+
+  <div
+    class="cdts__cdt"
+    *ngFor="let cdt of cdts"
+    [routerLink]="cdt.id.toString()"
+  >
+    <div class="cdt__header">
+      <i class="cdt__icon fa-solid fa-receipt fa-2xl"></i>
+      <h5 class="cdt__title">CDT #{{ cdt.id }}</h5>
+    </div>
+
+    <div class="cdt__info">
+      <span class="cdt__amount"
+        >Inversión:
+        <span class="cdt__amount__value">{{
+          utilsService.convertirCOP(cdt.inversion)
+        }}</span>
+        <div class="cdt__interest__badge">+ {{ cdt.interes }}%</div>
+      </span>
+    </div>
+
+    <div class="cdt__footer">
+      <span class="cdt__status"
+        >Estado:
+        <div class="cdt__status__badge">
+          {{ utilsService.obtenerNombreEstadoCDT(cdt.estado) }}
+        </div></span
+      >
+    </div>
+  </div>
+</div>

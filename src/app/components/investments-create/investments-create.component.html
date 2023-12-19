@@ -1,0 +1,165 @@
+<app-investments-transfer
+  *ngIf="dialogoConfirmacion"
+  [movimiento]="transferencia"
+  (closeDialog)="cerrarDialogoConfirmacion()"
+></app-investments-transfer>
+
+<div class="page">
+  <div class="left">
+    <form class="form" (ngSubmit)="calcular()">
+      <div class="form__column">
+        <div class="form__group">
+          <label class="form__label" for="inversion">Inversión</label>
+          <input
+            type="number"
+            id="inversion"
+            name="inversion"
+            class="form__input"
+            min="100000"
+            placeholder="Monto de inversión"
+            [(ngModel)]="formulario.inversion"
+          />
+          <span
+            class="form__invalid-text"
+            *ngIf="formularioEnviado && !formulario.inversion"
+          >
+            La inversión es requerida.
+          </span>
+          <span
+            class="form__invalid-text"
+            *ngIf="formularioEnviado && !patronMonto.test(formulario.inversion)"
+          >
+            La inversión debe ser un número válido mayor a 100000.
+          </span>
+        </div>
+
+        <div class="form__group">
+          <label class="form__label" for="duracion">Duración</label>
+          <input
+            type="number"
+            id="duracion"
+            name="duracion"
+            class="form__input"
+            min="30"
+            max="1800"
+            placeholder="Duración (en días)"
+            [(ngModel)]="formulario.duracion"
+          />
+          <span
+            class="form__invalid-text"
+            *ngIf="formularioEnviado && !formulario.duracion"
+            >La duración es requerida.
+          </span>
+          <span
+            class="form__invalid-text"
+            *ngIf="
+              formularioEnviado && !patronDuracion.test(formulario.duracion)
+            "
+          >
+            La duración debe ser un número válido entre 30 y 1800.
+          </span>
+        </div>
+
+        <button
+          class="form__button"
+          type="submit"
+          [disabled]="formularioEnviado && !verificarCampos()"
+        >
+          Calcular CDT
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="divisor" *ngIf="!!cdtCalculado"></div>
+
+  <div class="right" *ngIf="!!cdtCalculado">
+    <div class="info">
+      <div class="column">
+        <div class="item">
+          <div class="item__header">
+            <i class="item__icon fa-solid fa-money-bill"></i>
+            <h6 class="item__title">Inversión</h6>
+          </div>
+          <span class="item__text">{{
+            utilsService.convertirCOP(cdtCalculado.inversion)
+          }}</span>
+        </div>
+
+        <div class="item">
+          <div class="item__header">
+            <i class="item__icon fa-solid fa-clock"></i>
+            <h6 class="item__title">Duración</h6>
+          </div>
+          <span class="item__text">{{ cdtCalculado.duracion }} días</span>
+        </div>
+
+        <div class="item">
+          <div class="item__header">
+            <i class="item__icon fa-solid fa-calendar-days"></i>
+            <h6 class="item__title">Fecha de inicio</h6>
+          </div>
+          <span class="item__text">{{
+            utilsService.convertirFechaSinHora(cdtCalculado.fechaInicio)
+          }}</span>
+        </div>
+
+        <div class="item">
+          <div class="item__header">
+            <i class="item__icon fa-solid fa-calendar-days"></i>
+            <h6 class="item__title">Fecha de finalización</h6>
+          </div>
+          <span class="item__text">{{
+            utilsService.convertirFechaSinHora(cdtCalculado.fechaFin)
+          }}</span>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="item">
+          <div class="item__header">
+            <i class="item__icon fa-solid fa-hand-holding-dollar"></i>
+            <h6 class="item__title">Interés</h6>
+          </div>
+          <span class="item__text">{{
+            utilsService.convertirCOP(cdtCalculado.montoInteres) +
+              " (" +
+              utilsService.convertirPorcentaje(cdtCalculado.interes) +
+              ")"
+          }}</span>
+        </div>
+
+        <div class="item">
+          <div class="item__header">
+            <i class="item__icon fa-solid fa-coins"></i>
+            <h6 class="item__title">Devolución (sin retención)</h6>
+          </div>
+          <span class="item__text">{{ utilsService.convertirCOP(cdtCalculado.montoGanancia) }}</span>
+        </div>
+
+        <div class="item">
+          <div class="item__header">
+            <i class="item__icon fa-solid fa-scale-balanced"></i>
+            <h6 class="item__title">Retención en la fuente</h6>
+          </div>
+          <span class="item__text">{{
+            utilsService.convertirCOP(cdtCalculado.montoRetencion) +
+              " (" +
+              utilsService.convertirPorcentaje(cdtCalculado.retencion) +
+              ")"
+          }}</span>
+        </div>
+
+        <div class="item">
+          <div class="item__header">
+            <i class="item__icon fa-solid fa-money-bills"></i>
+            <h6 class="item__title">Devolución final</h6>
+          </div>
+          <span class="item__text">{{ utilsService.convertirCOP(cdtCalculado.montoDevolucion) }}</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="form__button" (click)="crear()">Crear CDT</button>
+  </div>
+</div>

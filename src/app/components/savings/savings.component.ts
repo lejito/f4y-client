@@ -46,8 +46,8 @@ export class SavingsComponent implements OnInit, OnDestroy {
   public descarga!: DescargaCuenta;
   public dialogoConfirmacionDescarga = false;
 
-  ngOnInit(): void {
-    this.cargarDatos();
+  async ngOnInit(): Promise<void> {
+    await this.cargarDatos();
     this.subscription = this.utilsService
       .obtenerSaldoOculto()
       .subscribe((saldoOculto) => {

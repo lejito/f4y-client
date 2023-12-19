@@ -1,38 +1,35 @@
 <div class="page">
   <div class="page__header">
-    <h3 class="page__title">Tus inversiones</h3>
+    <h3 class="page__title" *ngIf="rutaActual == ''">Tus inversiones</h3>
+    <h3 class="page__title" *ngIf="rutaActual == '/create'">Calcula y crea tu CDT</h3>
+    <h3 class="page__title" *ngIf="rutaActual.match('^/\\d+$')">
+      Detalles de tu inversión
+    </h3>
 
-    <button class="page__button">
-      <i class="page__button__icon fa-solid fa-file-invoice-dollar"></i>
+    <div class="page__header__left">
+      <button
+        class="page__button page__button--calculate"
+        routerLink="create"
+        *ngIf="rutaActual == ''"
+      >
+        <i class="page__button__icon fa-solid fa-file-invoice-dollar"></i>
 
-      <span class="page__button__text">Abrir CDT</span>
-    </button>
+        <span class="page__button__text">Crear CDT</span>
+      </button>
+
+      <button
+        class="page__button"
+        routerLink="/panel/investments"
+        *ngIf="rutaActual != ''"
+      >
+        <i class="page__button__icon fa-solid fa-arrow-alt-circle-left"></i>
+
+        <span class="page__button__text">Volver a Inversiones</span>
+      </button>
+    </div>
   </div>
 
-  <div class="cdts">
-    <div class="cdts__cdt" *ngFor="let cdt of cdts">
-      <div class="cdt__header">
-        <i class="cdt__icon fa-solid fa-receipt fa-2xl"></i>
-        <h5 class="cdt__title">CDT #{{ cdt.id }}</h5>
-      </div>
-
-      <div class="cdt__info">
-        <span class="cdt__amount"
-          >Inversión:
-          <span class="cdt__amount__value">{{
-            utilsService.convertirCOP(cdt.inversion)
-          }}</span></span
-        >
-      </div>
-
-      <div class="cdt__footer">
-        <span class="cdt__status"
-          >Estado:
-          <div class="cdt__status__badge">
-            {{ utilsService.obtenerNombreEstadoCDT(cdt.estado) }}
-          </div></span
-        >
-      </div>
-    </div>
+  <div class="page__content">
+    <router-outlet></router-outlet>
   </div>
 </div>

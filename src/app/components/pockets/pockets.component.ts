@@ -15,7 +15,7 @@ export class PocketsComponent implements OnInit {
   constructor(
     private title: Title,
     public utilsService: UtilsService,
-    private alertService: AlertsService,
+    private alertsService: AlertsService,
     private bolsillosService: BolsillosService
   ) {
     this.title.setTitle('Fin4Youth: Bolsillos');
@@ -95,7 +95,7 @@ export class PocketsComponent implements OnInit {
   }
 
   public async eliminarBolsillo(id: number): Promise<void> {
-    this.alertService
+    this.alertsService
       .confirm('¿Estás segur@ de que deseas borrar este bolsillo?')
       .then(async (confirmacion) => {
         if (confirmacion) {

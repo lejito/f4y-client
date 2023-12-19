@@ -16,6 +16,9 @@ import { SettingsPasswordComponent } from './components/settings-password/settin
 import { SavingsComponent } from './components/savings/savings.component';
 import { PocketsComponent } from './components/pockets/pockets.component';
 import { InvestmentsComponent } from './components/investments/investments.component';
+import { InvestmentsCdtsComponent } from './components/investments-cdts/investments-cdts.component';
+import { InvestmentsCreateComponent } from './components/investments-create/investments-create.component';
+import { InvestmentsViewComponent } from './components/investments-view/investments-view.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -48,8 +51,13 @@ const routes: Routes = [
       },
       {
         path: 'investments',
-        component: InvestmentsComponent
-      }
+        component: InvestmentsComponent,
+        children: [
+          { path: '', component: InvestmentsCdtsComponent },
+          { path: 'create', component: InvestmentsCreateComponent },
+          { path: ':id', component: InvestmentsViewComponent },
+        ],
+      },
     ],
     canActivate: [AuthGuard],
   },

@@ -31,10 +31,12 @@
   --color-gray-hover: #535555;
   --color-success-hover: #15713b;
   --color-warning-hover: #d39126;
-  --color-danger-hover: #7d241a;
+  --color-danger-hover: #e55444;
   --color-primary-opaque: rgba(5, 109, 184, 0.5);
+  --color-secondary-opaque: rgba(108, 39, 160, 0.5);
   --color-tertiary-opaque: rgba(128, 171, 146, 0.5);
   --color-gray-opaque: rgba(121, 124, 124, 0.5);
+  --color-danger-opaque: rgba(178, 59, 46, 0.5);
   --color-tertiary-bg: rgba(128, 171, 146, 0.75);
 }
 

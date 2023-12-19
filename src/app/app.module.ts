@@ -29,6 +29,10 @@ import { PocketsRecordComponent } from './components/pockets-record/pockets-reco
 import { PocketsTransferComponent } from './components/pockets-transfer/pockets-transfer.component';
 import { PocketsTransferSuccessComponent } from './components/pockets-transfer-success/pockets-transfer-success.component';
 import { InvestmentsComponent } from './components/investments/investments.component';
+import { InvestmentsCdtsComponent } from './components/investments-cdts/investments-cdts.component';
+import { InvestmentsCreateComponent } from './components/investments-create/investments-create.component';
+import { InvestmentsViewComponent } from './components/investments-view/investments-view.component';
+import { InvestmentsTransferComponent } from './components/investments-transfer/investments-transfer.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +61,10 @@ import { InvestmentsComponent } from './components/investments/investments.compo
     PocketsTransferComponent,
     PocketsTransferSuccessComponent,
     InvestmentsComponent,
+    InvestmentsCdtsComponent,
+    InvestmentsCreateComponent,
+    InvestmentsViewComponent,
+    InvestmentsTransferComponent,
   ],
   imports: [
     BrowserModule,

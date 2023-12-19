@@ -1,0 +1,166 @@
+<app-investments-transfer
+  *ngIf="dialogoConfirmacion"
+  [movimiento]="transferencia"
+  (closeDialog)="cerrarDialogoConfirmacion()"
+></app-investments-transfer>
+
+<div class="view">
+  <div class="cdt">
+    <div class="cdt__header">
+      <h4 class="cdt__title">CDT #{{ cdt?.id }}</h4>
+    </div>
+
+    <div class="cdt__info">
+      <div class="cdt__info__left">
+        <div class="cdt__info__item">
+          <i class="cdt__info__item__icon fa-solid fa-money-bill fa-xl"></i>
+          <div class="cdt__info__item__text">
+            <span class="cdt__info__item__text__title">Inversión</span>
+            <span class="cdt__info__item__text__value">{{
+              cdt ? utilsService.convertirCOP(cdt.inversion) : null
+            }}</span>
+          </div>
+        </div>
+
+        <div class="cdt__info__line"></div>
+
+        <div class="cdt__info__item">
+          <i class="cdt__info__item__icon fa-solid fa-clock fa-xl"></i>
+          <div class="cdt__info__item__text">
+            <span class="cdt__info__item__text__title">Duración</span>
+            <span class="cdt__info__item__text__value"
+              >{{ cdt?.duracion }} días</span
+            >
+          </div>
+        </div>
+
+        <div class="cdt__info__line"></div>
+
+        <div class="cdt__info__item">
+          <i class="cdt__info__item__icon fa-solid fa-calendar-days fa-xl"></i>
+          <div class="cdt__info__item__text">
+            <span class="cdt__info__item__text__title">Fecha de inicio</span>
+            <span class="cdt__info__item__text__value">{{
+              cdt ? utilsService.convertirFechaSinHora(cdt.fechaInicio) : null
+            }}</span>
+          </div>
+        </div>
+
+        <div class="cdt__info__line"></div>
+
+        <div class="cdt__info__item">
+          <i class="cdt__info__item__icon fa-solid fa-calendar-days fa-xl"></i>
+          <div class="cdt__info__item__text">
+            <span class="cdt__info__item__text__title"
+              >Fecha de finalización</span
+            >
+            <span class="cdt__info__item__text__value">{{
+              cdt ? utilsService.convertirFechaSinHora(cdt.fechaFin) : null
+            }}</span>
+          </div>
+        </div>
+
+        <div class="cdt__info__line"></div>
+
+        <div class="cdt__info__item">
+          <i class="cdt__info__item__icon fa-solid fa-gauge-high fa-xl"></i>
+          <div class="cdt__info__item__text">
+            <span class="cdt__info__item__text__title">Estado</span>
+            <span class="cdt__info__item__text__value">{{
+              cdt ? utilsService.obtenerNombreEstadoCDT(cdt.estado) : null
+            }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cdt__info__divisor"></div>
+
+      <div class="cdt__info__right">
+        <div class="cdt__info__item">
+          <i
+            class="cdt__info__item__icon fa-solid fa-hand-holding-dollar fa-xl"
+          ></i>
+          <div class="cdt__info__item__text">
+            <span class="cdt__info__item__text__title">Interés</span>
+            <span class="cdt__info__item__text__value">
+              {{
+                cdt
+                  ? utilsService.convertirCOP(cdt.montoInteres) +
+                    " (" +
+                    utilsService.convertirPorcentaje(cdt.interes) +
+                    ")"
+                  : null
+              }}
+            </span>
+          </div>
+        </div>
+
+        <div class="cdt__info__line"></div>
+
+        <div class="cdt__info__item">
+          <i class="cdt__info__item__icon fa-solid fa-coins fa-xl"></i>
+          <div class="cdt__info__item__text">
+            <span class="cdt__info__item__text__title"
+              >Devolución (sin retención)</span
+            >
+            <span class="cdt__info__item__text__value">{{
+              cdt ? utilsService.convertirCOP(cdt.montoGanancia) : null
+            }}</span>
+          </div>
+        </div>
+
+        <div class="cdt__info__line"></div>
+
+        <div class="cdt__info__item">
+          <i class="cdt__info__item__icon fa-solid fa-scale-balanced fa-xl"></i>
+          <div class="cdt__info__item__text">
+            <span class="cdt__info__item__text__title"
+              >Retención en la fuente</span
+            >
+            <span class="cdt__info__item__text__value">
+              {{
+                cdt
+                  ? utilsService.convertirCOP(cdt.montoRetencion) +
+                    " (" +
+                    utilsService.convertirPorcentaje(cdt.retencion) +
+                    ")"
+                  : null
+              }}
+            </span>
+          </div>
+        </div>
+
+        <div class="cdt__info__line"></div>
+
+        <div class="cdt__info__item">
+          <i class="cdt__info__item__icon fa-solid fa-money-bills fa-xl"></i>
+          <div class="cdt__info__item__text">
+            <span class="cdt__info__item__text__title">Devolución final</span>
+            <span class="cdt__info__item__text__value">
+              {{ cdt ? utilsService.convertirCOP(cdt.montoDevolucion) : null }}
+            </span>
+          </div>
+        </div>
+
+        <div class="cdt__info__line"></div>
+
+        <div class="cdt__options">
+          <button
+            class="cdt__button cdt__button--liquidate"
+            [disabled]="cdt?.estado !== 'finalizado'"
+            (click)="cdt ? liquidarCDT(cdt.id) : null"
+          >
+            Liquidar
+          </button>
+          <button
+            class="cdt__button cdt__button--cancel"
+            [disabled]="cdt?.estado !== 'apertura'"
+            (click)="cdt ? cancelarCDT(cdt.id) : null"
+          >
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
