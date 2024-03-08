@@ -3,8 +3,8 @@ import { Router, NavigationEnd } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { TipoMovimiento } from '../../types/Movimiento';
-import * as moment from 'moment';
 import { EstadoCDT } from 'src/types/CDT';
+import * as moment from 'moment';
 
 @Injectable({ providedIn: 'root' })
 export class UtilsService {
