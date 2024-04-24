@@ -100,7 +100,7 @@
             <h6 class="item__title">Fecha de inicio</h6>
           </div>
           <span class="item__text">{{
-            utilsService.convertirFechaSinHora(cdtCalculado.fechaInicio)
+            utilsService.convertirFecha(cdtCalculado.fechaInicio, false)
           }}</span>
         </div>
 
@@ -110,7 +110,7 @@
             <h6 class="item__title">Fecha de finalización</h6>
           </div>
           <span class="item__text">{{
-            utilsService.convertirFechaSinHora(cdtCalculado.fechaFin)
+            utilsService.convertirFecha(cdtCalculado.fechaFin, false)
           }}</span>
         </div>
       </div>

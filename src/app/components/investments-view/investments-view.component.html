@@ -41,7 +41,7 @@
           <div class="cdt__info__item__text">
             <span class="cdt__info__item__text__title">Fecha de inicio</span>
             <span class="cdt__info__item__text__value">{{
-              cdt ? utilsService.convertirFechaSinHora(cdt.fechaInicio) : null
+              cdt ? utilsService.convertirFecha(cdt.fechaInicio, false) : null
             }}</span>
           </div>
         </div>
@@ -55,7 +55,7 @@
               >Fecha de finalización</span
             >
             <span class="cdt__info__item__text__value">{{
-              cdt ? utilsService.convertirFechaSinHora(cdt.fechaFin) : null
+              cdt ? utilsService.convertirFecha(cdt.fechaFin, false) : null
             }}</span>
           </div>
         </div>

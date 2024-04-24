@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { TipoMovimiento } from '../../types/Movimiento';
 import { EstadoCDT } from 'src/types/CDT';
-import * as moment from 'moment';
+import moment from 'moment-timezone';
 
 @Injectable({ providedIn: 'root' })
 export class UtilsService {
@@ -39,7 +39,8 @@ export class UtilsService {
   private readonly _patronMonto =
     /^(5000|500[1-9]|50[1-9]\d|5[1-9]\d{2}|[6-9]\d{3}|\d{5,14})$/;
   private readonly _patronMontoInversion = /^(100000|[1-9]\d{5,13})$/;
-  private readonly _patronDuracionInversion = /^(3[0-9]|[4-9][0-9]|[1-9][0-9]{2}|1[0-7][0-9]{2}|1800)$/;
+  private readonly _patronDuracionInversion =
+    /^(3[0-9]|[4-9][0-9]|[1-9][0-9]{2}|1[0-7][0-9]{2}|1800)$/;
 
   public get patronCorreo() {
     return this._patronCorreo;
@@ -74,7 +75,7 @@ export class UtilsService {
     sessionStorage.removeItem(this.tokenKey);
   }
 
-  public obtenerRutaActual() {
+  public obtenerRutaActual(): Observable<string> {
     return this._rutaActual.asObservable();
   }
 
@@ -121,26 +122,9 @@ export class UtilsService {
     });
   }
 
-  public convertirFecha(fecha: string): string {
-    const timestamp = moment(fecha).format('yyyy/MM/DD hh:mm:ss A');
-
-    return new Date(timestamp).toLocaleString('es-CO', {
-      day: '2-digit',
-      month: 'short',
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true,
-    });
-  }
-
-  public convertirFechaSinHora(fecha: string): string {
-    const timestamp = moment(fecha).format('yyyy/MM/DD');
-
-    return new Date(timestamp).toLocaleString('es-CO', {
-      year: 'numeric',
-      day: 'numeric',
-      month: 'long',
-    });
+  public convertirFecha(fecha: string, conHora: boolean = true): string {
+    const formatString = conHora ? 'D [de] MMM, h:mm a' : 'D [de] MMMM [de] YYYY';
+    return moment.tz(fecha, 'UTC').locale('es-CO').format(formatString);
   }
 
   public obtenerNombreTipoMovimiento(tipoMovimiento: TipoMovimiento): string {
