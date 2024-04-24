@@ -7,10 +7,10 @@ const config: Config = {
   preset: 'jest-preset-angular',
   setupFilesAfterEnv: ["<rootDir>/setup-jest.ts"],
   testEnvironment: 'jsdom',
-  globalSetup: "jest-preset-angular/global-setup",
   testMatch: ['**/tests/**/*.spec.ts'],
   collectCoverage: true,
-  collectCoverageFrom: ['src/app/**/*.ts'],
+  // collectCoverageFrom: ['src/app/**/*.ts'],
+  collectCoverageFrom: ['src/app/services/*.ts'],
   modulePaths: [compilerOptions.baseUrl],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
 };
