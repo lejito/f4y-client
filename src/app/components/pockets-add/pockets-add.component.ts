@@ -12,7 +12,6 @@ import { BolsillosService } from 'src/app/services/bolsillos.service';
 @Component({
   selector: 'app-pockets-add',
   templateUrl: './pockets-add.component.html',
-  styleUrls: ['./pockets-add.component.css'],
   animations: [
     trigger('fadeIn', [
       state('in', style({ opacity: 1 })),

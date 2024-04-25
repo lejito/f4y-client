@@ -10,7 +10,6 @@ import {
 @Component({
   selector: 'app-loading',
   templateUrl: './loading.component.html',
-  styleUrls: ['./loading.component.css'],
   animations: [
     trigger('fadeInOut', [
       state(

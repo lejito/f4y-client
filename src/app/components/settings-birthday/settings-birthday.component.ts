@@ -6,7 +6,6 @@ import { CuentasService } from 'src/app/services/cuentas.service';
 @Component({
   selector: 'app-settings-birthday',
   templateUrl: './settings-birthday.component.html',
-  styleUrls: ['./settings-birthday.component.css'],
 })
 export class SettingsBirthdayComponent implements OnInit {
   constructor(

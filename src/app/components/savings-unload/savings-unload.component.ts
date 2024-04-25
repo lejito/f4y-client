@@ -13,7 +13,6 @@ import { DescargaCuenta } from 'src/types/Movimiento';
 @Component({
   selector: 'app-savings-unload',
   templateUrl: './savings-unload.component.html',
-  styleUrls: ['./savings-unload.component.css'],
   animations: [
     trigger('fadeIn', [
       state('in', style({ opacity: 1 })),

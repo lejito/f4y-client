@@ -12,7 +12,6 @@ import { TransferenciaBolsillo } from '../../../types/Movimiento';
 @Component({
   selector: 'app-pockets-transfer-success',
   templateUrl: './pockets-transfer-success.component.html',
-  styleUrls: ['./pockets-transfer-success.component.css'],
   animations: [
     trigger('fadeIn', [
       state('in', style({ opacity: 1 })),

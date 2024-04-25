@@ -3,7 +3,6 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-savings-load',
   templateUrl: './savings-load.component.html',
-  styleUrls: ['./savings-load.component.css'],
 })
 export class SavingsLoadComponent implements OnInit {
   @Input({ required: true }) cuenta!: string;

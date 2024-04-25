@@ -12,7 +12,6 @@ import { Movimiento } from '../../../types/Movimiento';
 @Component({
   selector: 'app-investments-transfer',
   templateUrl: './investments-transfer.component.html',
-  styleUrls: ['./investments-transfer.component.css'],
   animations: [
     trigger('fadeIn', [
       state('in', style({ opacity: 1 })),

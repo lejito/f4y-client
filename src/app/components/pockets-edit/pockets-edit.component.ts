@@ -13,7 +13,6 @@ import { Bolsillo } from 'src/types/Bolsillo';
 @Component({
   selector: 'app-pockets-edit',
   templateUrl: './pockets-edit.component.html',
-  styleUrls: ['./pockets-edit.component.css'],
   animations: [
     trigger('fadeIn', [
       state('in', style({ opacity: 1 })),

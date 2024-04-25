@@ -6,7 +6,6 @@ import { CuentasService } from 'src/app/services/cuentas.service';
 @Component({
   selector: 'app-settings-identity',
   templateUrl: './settings-identity.component.html',
-  styleUrls: ['./settings-identity.component.css'],
 })
 export class SettingsIdentityComponent implements OnInit {
   constructor(
