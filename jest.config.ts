@@ -13,6 +13,8 @@ const config: Config = {
   collectCoverageFrom: ['src/app/services/*.ts'],
   modulePaths: [compilerOptions.baseUrl],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
+  coverageReporters: ['lcov'],
+  testResultsProcessor: 'jest-sonar-reporter',
 };
 
 export default config;
