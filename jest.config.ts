@@ -9,11 +9,10 @@ const config: Config = {
   testEnvironment: 'jsdom',
   testMatch: ['**/tests/**/*.spec.ts'],
   collectCoverage: true,
-  // collectCoverageFrom: ['src/app/**/*.ts'],
   collectCoverageFrom: ['src/app/services/*.ts'],
   modulePaths: [compilerOptions.baseUrl],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
-  coverageReporters: ['lcov'],
+  coverageReporters: ['lcov', 'text-summary'],
   testResultsProcessor: 'jest-sonar-reporter',
 };
 
