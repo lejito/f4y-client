@@ -80,7 +80,6 @@ time,
 mark,
 audio,
 video,
-a,
 input,
 select,
 option {
@@ -88,7 +87,6 @@ option {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
   font-family: inherit;
   vertical-align: baseline;
   text-decoration: inherit;
