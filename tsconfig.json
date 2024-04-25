@@ -29,7 +29,7 @@
       "@services/*": ["src/app/services/*"],
       "@assets/*": ["src/assets/*"],
       "@environments/*": ["src/environments/*"],
-      "@types/*": ["src/types/*"]
+      "@customTypes/*": ["src/types/*"]
     }
   },
   "angularCompilerOptions": {
