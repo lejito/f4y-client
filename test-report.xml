@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="D:\PROYECTOS\f4y\f4y-client\tests\services\alerts.service.spec.ts">
+    <testCase name="AlertsService debería mostrar un mensaje" duration="13"/>
+    <testCase name="AlertsService debería confirmar una acción (verdadera)" duration="5"/>
+    <testCase name="AlertsService debería confirmar una acción (falsa)" duration="2"/>
+  </file>
+  <file path="D:\PROYECTOS\f4y\f4y-client\tests\services\utils.service.spec.ts">
+    <testCase name="UtilsService debería obtener el patrón de correo" duration="14"/>
+    <testCase name="UtilsService debería obtener el patrón de clave" duration="2"/>
+    <testCase name="UtilsService debería obtener el patrón de monto" duration="1"/>
+    <testCase name="UtilsService debería obtener el patrón de monto de inversión" duration="1"/>
+    <testCase name="UtilsService debería obtener el patrón de duración de inversión" duration="1"/>
+    <testCase name="UtilsService debería obtener un token" duration="2"/>
+    <testCase name="UtilsService debería guardar un token" duration="1"/>
+    <testCase name="UtilsService debería borrar un token" duration="3"/>
+    <testCase name="UtilsService debería obtener la ruta actual" duration="5"/>
+    <testCase name="UtilsService debería obtener el saldo oculto" duration="1"/>
+    <testCase name="UtilsService debería actualizar el saldo oculto" duration="1"/>
+    <testCase name="UtilsService debería obtener el filtrado de CDTs" duration="1"/>
+    <testCase name="UtilsService debería actualizar el filtrado de CDTs" duration="1"/>
+    <testCase name="UtilsService debería obtener el estado de carga" duration="1"/>
+    <testCase name="UtilsService debería actualizar el estado de carga" duration="1"/>
+    <testCase name="UtilsService debería convertir un monto a formato COP" duration="69"/>
+    <testCase name="UtilsService debería convertir un número a formato de porcentaje" duration="1"/>
+    <testCase name="UtilsService debería convertir una fecha a formato local" duration="23"/>
+    <testCase name="UtilsService debería convertir una fecha a formato local (sin hora)" duration="4"/>
+    <testCase name="UtilsService debería obtener el nombre de un tipo de movimiento" duration="2"/>
+    <testCase name="UtilsService debería obtener el nombre de un estado de CDT" duration="2"/>
+  </file>
+  <file path="D:\PROYECTOS\f4y\f4y-client\tests\services\cuentas.services.spec.ts">
+    <testCase name="CuentasService debería calcular la edad" duration="29"/>
+    <testCase name="CuentasService debería crear una cuenta" duration="14"/>
+    <testCase name="CuentasService debería iniciar sesión" duration="3"/>
+    <testCase name="CuentasService debería cerrar sesión" duration="6"/>
+    <testCase name="CuentasService debería verificar la sesión (sin token en panel)" duration="2"/>
+  </file>
+</testExecutions>

@@ -25,7 +25,7 @@ export class InvestmentsViewComponent implements OnInit {
   public transferencia: Movimiento | null = null;
 
   async ngOnInit(): Promise<void> {
-    this.id = this.route.snapshot.paramMap.get('id') || '';
+    this.id = this.route.snapshot.paramMap.get('id') ?? '';
     await this.cargarDatos();
   }
 

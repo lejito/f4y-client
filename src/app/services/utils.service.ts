@@ -40,7 +40,7 @@ export class UtilsService {
     /^(5000|500[1-9]|50[1-9]\d|5[1-9]\d{2}|[6-9]\d{3}|\d{5,14})$/;
   private readonly _patronMontoInversion = /^(100000|[1-9]\d{5,13})$/;
   private readonly _patronDuracionInversion =
-    /^(3[0-9]|[4-9][0-9]|[1-9][0-9]{2}|1[0-7][0-9]{2}|1800)$/;
+    /^(3\d|[4-9]\d|[1-9]\d{2}|1[0-7]\d{2}|1800)$/;
 
   public get patronCorreo() {
     return this._patronCorreo;
@@ -123,7 +123,9 @@ export class UtilsService {
   }
 
   public convertirFecha(fecha: string, conHora: boolean = true): string {
-    const formatString = conHora ? 'D [de] MMM, h:mm a' : 'D [de] MMMM [de] YYYY';
+    const formatString = conHora
+      ? 'D [de] MMM, h:mm a'
+      : 'D [de] MMMM [de] YYYY';
     return moment.tz(fecha, 'UTC').locale('es-CO').format(formatString);
   }
 
