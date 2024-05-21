@@ -4,17 +4,17 @@ describe("Login Page", () => {
   });
 
   it("should display the logo", () => {
-    cy.get("[data-cy=login-logo]").should("be.visible");
+    cy.get('div[class="login-logo"]').should("be.visible");
   });
 
   it("should have input fields for identification type, number, and password", () => {
-    cy.get("[data-cy=tipoIdentificacion]").should("be.visible");
-    cy.get("[data-cy=numeroIdentificacion]").should("be.visible");
-    cy.get("[data-cy=clave]").should("be.visible");
+    cy.get("select[id='tipoIdentificacion']").should("be.visible");
+    cy.get("input[id='numeroIdentificacion']").should("be.visible");
+    cy.get("input[id='clave']").should("be.visible");
   });
 
-  it("should display a message after clicking the login button", () => {
-    cy.get("[data-cy=login-button]").click();
-    cy.get("[data-cy=login-message]").should("be.visible");
+  it("should display a message after clicking the login button without text", () => {
+    cy.get("button[class='form__button']").click();
+    cy.get("span[class='form__invalid-text']").should("be.visible");
   });
 });
