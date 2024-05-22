@@ -16,9 +16,13 @@ describe("Register page", () => {
     cy.get("input[id='segundoApellido']").should("be.visible");
     cy.get("input[id='fechaNacimiento']").should("be.visible");
     cy.get("input[id='correo']").should("be.visible");
-    cy.get("input[id='password']").should("be.visible");
+    cy.get("input[id='clave']").should("be.visible");
     cy.get("input[id='repetirClave']").should("be.visible");
-    cy.get("BUTTON[id='form__button']").should("be.visible");
+    cy.get("button[class='form__button']").should("be.visible");
+    cy.get("input[id='tratamientoDatos']").should("be.visible");
+    cy.get("input[id='tyc']").should("be.visible");
+
+    cy.screenshot()
   });
 
   it("should let me register", () => {
@@ -30,9 +34,14 @@ describe("Register page", () => {
     cy.get("input[id='segundoApellido']").type("Cuartas");
     cy.get("input[id='fechaNacimiento']").type("1998-03-06");
     cy.get("input[id='correo']").type("juanca.naranjo03@gmail.com");
-    cy.get("input[id='password']").should("juan123");
-    cy.get("input[id='repetirClave']").should("juan123");
-    cy.get("BUTTON[id='form__button']").click();
+    cy.get("input[id='clave']").type("jJuan123*");
+    cy.get("input[id='repetirClave']").type("jJuan123*");
+    cy.get("input[id='tratamientoDatos']").should("be.visible").check();
+    cy.get("input[id='tyc']").should("be.visible").check();
+    cy.get("button[class='form__button']").click();
+    
+    cy.wait(5000)
+    cy.screenshot()
   });
 
   it("should not let me register", () => {
@@ -44,8 +53,15 @@ describe("Register page", () => {
     cy.get("input[id='segundoApellido']").type("Cuartas");
     cy.get("input[id='fechaNacimiento']").type("2024-03-06");
     cy.get("input[id='correo']").type("prueba@prueba");
-    cy.get("input[id='password']").should("juan123");
-    cy.get("input[id='repetirClave']").should("juan123");
-    cy.get("BUTTON[id='form__button']").click();
+    cy.get("input[id='clave']").type("jJuan123*");
+    cy.get("input[id='repetirClave']").type("jJuan123*");
+    cy.get("input[id='tratamientoDatos']").should("be.visible").check();
+    cy.get("input[id='tyc']").should("be.visible").check();
+    cy.get("button[class='form__button']").click();
+
+    cy.wait(5000)
+    
+    cy.get("span[class='form__invalid-text']").should("be.visible");
+    cy.screenshot()
   });
 });
