@@ -1,6 +1,6 @@
 describe("Login Page", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:4200/login");
+    cy.visit("https://f4y.vercel.app/");
   });
 
   it("should display the logo", () => {

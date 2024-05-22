@@ -1,6 +1,6 @@
 describe("Register page", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:4200/register");
+    cy.visit("https://f4y.vercel.app/");
   });
 
   it("should display the back button", () => {
