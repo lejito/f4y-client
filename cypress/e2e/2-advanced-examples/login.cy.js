@@ -17,4 +17,21 @@ describe("Login Page", () => {
     cy.get("button[class='form__button']").click();
     cy.get("span[class='form__invalid-text']").should("be.visible");
   });
+
+  it("should dont login", () => {
+    cy.get("select[id='tipoIdentificacion']").select(1);
+    cy.get("input[id='numeroIdentificacion']").type("12343");
+    cy.get("input[id='clave']").type("1234");
+
+    cy.get("button[class='form__button']").click();
+
+    cy.wait(4000);
+
+    cy.get("div[class='swal2-html-container']")
+      .should("be.visible")
+      .and(
+        "contain.text",
+        "Ha ocurrido un error en el servidor. Inténtelo de nuevo más tarde."
+      );
+  });
 });
