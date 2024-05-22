@@ -31,7 +31,7 @@ describe("Login Page", () => {
       .should("be.visible")
       .and(
         "contain.text",
-        "Ha ocurrido un error en el servidor. Inténtelo de nuevo más tarde."
+        "Inicio de sesion exitoso}."
       );
 
       cy.screenshot()

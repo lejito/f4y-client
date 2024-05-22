@@ -41,6 +41,13 @@ describe("Register page", () => {
     cy.get("button[class='form__button']").click();
     
     cy.wait(5000)
+    cy.get("div[class='swal2-html-container']")
+    .should("be.visible")
+    .and(
+      "contain.text",
+      "Login exitoso."
+    );
+
     cy.screenshot()
   });
 
