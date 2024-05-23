@@ -16,7 +16,7 @@ it('No ingresa con datos invalidos', async () => {
         await actorCalled('Alejandro').attemptsTo(
             Navigate.to('http://localhost:4200/login'),
           PageElement.located(By.id("tipoIdentificacion")).selectOptions(SelectOption.withLabel("Cédula de ciudadanía")),
-         Enter.theValue("123456789").into(PageElement.located(By.id("numeroIdentificacion"))),
+         Enter.theValue("0").into(PageElement.located(By.id("numeroIdentificacion"))),
           Enter.theValue("123456789").into(PageElement.located(By.id("clave"))),
           Press.the(Key.Enter).in(PageElement.located(By.css(".form__button"))),
           Wait.until(PageElement.located(By.css(".swal2-popup")), isVisible()),
